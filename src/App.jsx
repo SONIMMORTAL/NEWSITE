@@ -1737,7 +1737,7 @@ const App = () => {
                     <div>
                         <h4 className="text-white font-bold mb-6 tracking-wide text-sm uppercase">Contact</h4>
                         <ul className="space-y-3 text-sm opacity-80">
-                            <li className="flex gap-3"><MapPin size={16} className="text-yellow-500" /> P.O Box 340491, Brooklyn</li>
+                            <li className="flex gap-3"><MapPin size={16} className="text-yellow-500" /> P.O Box 340491, Jamaica Queens 11434</li>
                             <li className="flex gap-3"><Phone size={16} className="text-yellow-500" /> +1 718 612 8948</li>
                             <li className="flex gap-3"><Mail size={16} className="text-yellow-500" /> Publicadvocatessocialsociety@gmail.com</li>
                         </ul>
