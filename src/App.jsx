@@ -1463,9 +1463,6 @@ const HomePage = ({ navigate }) => (
 
             <div className="relative z-10 max-w-[1200px] mx-auto px-6 w-full">
                 <div className="max-w-xl space-y-8">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-yellow-400 text-xs font-bold uppercase tracking-widest">
-                        <Sparkles size={12} /> Established 2025
-                    </div>
                     <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight tracking-tight">
                         Advocating for <span className="text-yellow-400">Unity</span> & <span className="text-yellow-400">Change</span>
                     </h1>
@@ -1627,11 +1624,11 @@ const App = () => {
             />
 
             {/* Navigation */}
-            <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled || activePage !== 'home' ? 'bg-green-950/95 backdrop-blur-xl py-2 shadow-2xl border-b border-white/10' : 'bg-transparent py-6'}`}>
+            <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled || activePage !== 'home' ? 'bg-green-950/95 backdrop-blur-xl py-2 shadow-2xl border-b border-white/10' : 'bg-transparent py-4 md:py-6'}`}>
                 <div className="max-w-[1200px] mx-auto px-6 flex justify-between items-center">
                     <div className="flex items-center gap-4 cursor-pointer group" onClick={() => navigate('home')}>
                         <div className="group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all duration-300 ease-out">
-                            <img src={ASSETS.logo} className="h-28 w-auto object-contain drop-shadow-md" alt="Public Advocate Logo" />
+                            <img src={ASSETS.logo} className="h-20 md:h-28 w-auto object-contain drop-shadow-md" alt="Public Advocate Logo" />
                         </div>
                     </div>
 
@@ -1717,8 +1714,11 @@ const App = () => {
                         <p className="text-sm leading-relaxed mb-6 opacity-80">
                             Enriching the lives of our members, their families, and the communities we represent in Brooklyn.
                         </p>
-                        <div className="flex gap-3">
+                        <div className="flex gap-3 mb-6">
                             {[1, 2, 3].map(i => <div key={i} className="w-8 h-8 bg-white/5 rounded-full hover:bg-yellow-500 hover:text-green-900 transition-colors cursor-pointer flex items-center justify-center text-xs">SOC</div>)}
+                        </div>
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-yellow-500 text-[10px] font-bold uppercase tracking-widest">
+                            <Sparkles size={10} /> Established 2025
                         </div>
                     </div>
 
