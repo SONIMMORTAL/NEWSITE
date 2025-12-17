@@ -1718,7 +1718,7 @@ const App = () => {
                             {[1, 2, 3].map(i => <div key={i} className="w-8 h-8 bg-white/5 rounded-full hover:bg-yellow-500 hover:text-green-900 transition-colors cursor-pointer flex items-center justify-center text-xs">SOC</div>)}
                         </div>
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-yellow-500 text-[10px] font-bold uppercase tracking-widest">
-                            <Sparkles size={10} /> Established 2025
+                            <Sparkles size={10} /> Established 2012
                         </div>
                     </div>
 
