@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, Send, X, Sparkles, Loader2, Minimize2, Maximize2, User, Bot } from 'lucide-react';
 import { CALENDAR_DATA_2026, PANTRY_LOCATIONS, SOCIAL_SERVICES } from './data';
 
-const API_KEY = "AIzaSyA4oFmtSzEZ-JecaqjArNXJ4N8jSJwND80"; // Injected at runtime or via prop
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY; // Securely loaded from environment variables
 
 const SYSTEM_PROMPT = `
 You are the Public Advocate Social Society's helpful AI Assistant.
