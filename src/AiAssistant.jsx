@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, Send, X, Sparkles, Loader2, Minimize2, Maximize2, User, Bot } from 'lucide-react';
-import { CALENDAR_DATA_2026, PANTRY_LOCATIONS, SOCIAL_SERVICES } from './data';
+import { CALENDAR_DATA_2026, PANTRY_LOCATIONS, SOCIAL_SERVICES, POLITICAL_INFO } from './data';
 
 const API_KEY = import.meta.env.acc; // Securely loaded from environment variables
 
@@ -19,6 +19,9 @@ ${JSON.stringify(PANTRY_LOCATIONS)}
 
 SOCIAL SERVICES:
 ${JSON.stringify(SOCIAL_SERVICES)}
+
+POLITICAL OFFICIALS:
+${JSON.stringify(POLITICAL_INFO)}
 
 GUIDELINES:
 1. Be warm, encouraging, and community-focused. You are a "partner" in the community.

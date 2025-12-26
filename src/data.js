@@ -143,3 +143,9 @@ export const SOCIAL_SERVICES = {
         description: "Engaging the community through safe, fun, and educational sporting events."
     }
 };
+
+export const POLITICAL_INFO = [
+    { name: "Chris Banks", role: "NYC Council Member, District 42", description: "Represents East New York, Starrett City, Brownsville, Canarsie, and East Flatbush. Council Member Banks is focused on public safety, affordable housing, and economic development for the district." },
+    { name: "Jumaane Williams", role: "NYC Public Advocate", description: "Citywide elected official who acts as an ombudsman for city services and a check on the mayor." },
+    { name: "Eric Adams", role: "Mayor of New York City", description: "Executive of the city government." }
+];

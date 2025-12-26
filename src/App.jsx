@@ -45,11 +45,11 @@ import {
 import { CALENDAR_DATA_2026, MONTHLY_THEMES, PANTRY_LOCATIONS } from './data';
 import AiAssistant from './AiAssistant';
 
-const apiKey = import.meta.env.VITE_GOOGLE_API_KEY; // Securely loaded from environment variables
+const apiKey = import.meta.env.acc; // Securely loaded from environment variables
 
 // --- Helper: Gemini API Call ---
 const callGemini = async (prompt) => {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
     const payload = { contents: [{ parts: [{ text: prompt }] }] };
 
     const fetchWithRetry = async (attempt = 0) => {
