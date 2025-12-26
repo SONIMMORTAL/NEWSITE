@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Newspaper, MapPin, Clock, Utensils, Loader2 } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 import SectionHeader from '../components/ui/SectionHeader';
 import GlassCard from '../components/ui/GlassCard';
 import { PANTRY_LOCATIONS } from '../data';
@@ -13,7 +14,15 @@ const FoodPantryPage = () => {
     const handleGenerateRecipe = async () => {
         if (!ingredients.trim()) return;
         setLoading(true);
-        const prompt = `You are a helpful chef for a community food pantry. The user has these ingredients: "${ingredients}". Suggest a simple, nutritious, and tasty recipe.`;
+        const prompt = `You are a helpful chef for a community food pantry. The user has these ingredients: "${ingredients}". 
+        Create a simple, nutritious, and tasty recipe. 
+        Format your response in nice Markdown:
+        - Use a clear H3 (#) for the Title.
+        - Use bolding for key words.
+        - Use bullet points for ingredients.
+        - Use numbered lists for instructions.
+        Keep it concise and easy to read.`;
+
         const result = await callGemini(prompt);
         setRecipe(result);
         setLoading(false);
@@ -91,8 +100,8 @@ const FoodPantryPage = () => {
                             </div>
                             {recipe && (
                                 <div className="px-6 pb-6 animate-in slide-in-from-top-2">
-                                    <div className="p-4 bg-green-50 border border-green-100 rounded-xl text-sm text-slate-700 max-h-60 overflow-y-auto custom-scrollbar">
-                                        {recipe}
+                                    <div className="p-4 bg-green-50 border border-green-100 rounded-xl text-sm text-slate-700 max-h-80 overflow-y-auto custom-scrollbar prose prose-sm prose-green prose-p:my-1 prose-headings:mb-2 prose-ul:my-1 prose-li:my-0">
+                                        <ReactMarkdown>{recipe}</ReactMarkdown>
                                     </div>
                                 </div>
                             )}
