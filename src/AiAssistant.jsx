@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, Send, X, Sparkles, Loader2, Minimize2, Maximize2, User, Bot } from 'lucide-react';
 import { CALENDAR_DATA_2026, PANTRY_LOCATIONS, SOCIAL_SERVICES } from './data';
 
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY; // Securely loaded from environment variables
+const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY; // Securely loaded from environment variables
 
 const SYSTEM_PROMPT = `
 You are the Public Advocate Social Society's helpful AI Assistant.
@@ -56,7 +56,7 @@ const AiAssistant = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`, {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -74,7 +74,7 @@ const AiAssistant = () => {
             setMessages(prev => [...prev, { role: 'assistant', text: reply }]);
         } catch (error) {
             console.error(error);
-            setMessages(prev => [...prev, { role: 'assistant', text: "I'm having trouble connecting to the community network right now. Please try again later." }]);
+            setMessages(prev => [...prev, { role: 'assistant', text: `Connection Error: ${error.message || error.toString()} (Key: ${API_KEY ? 'Present' : 'Missing'})` }]);
         } finally {
             setIsLoading(false);
         }

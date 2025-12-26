@@ -45,7 +45,7 @@ import {
 import { CALENDAR_DATA_2026, MONTHLY_THEMES, PANTRY_LOCATIONS } from './data';
 import AiAssistant from './AiAssistant';
 
-const apiKey = "AIzaSyA4oFmtSzEZ-JecaqjArNXJ4N8jSJwND80"; // API Key injected at runtime
+const apiKey = import.meta.env.VITE_GOOGLE_API_KEY; // Securely loaded from environment variables
 
 // --- Helper: Gemini API Call ---
 const callGemini = async (prompt) => {
