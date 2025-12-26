@@ -1,8 +1,8 @@
 import React from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingBag } from 'lucide-react';
 import { ASSETS } from '../../constants/assets';
 
-const Navbar = ({ activePage, navigate, isMenuOpen, setIsMenuOpen, scrolled }) => (
+const Navbar = ({ activePage, navigate, isMenuOpen, setIsMenuOpen, scrolled, cartCount }) => (
     <>
         <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled || activePage !== 'home' ? 'bg-green-950/95 backdrop-blur-xl py-2 shadow-2xl border-b border-white/10' : 'bg-transparent py-4 md:py-6'}`}>
             <div className="max-w-[1200px] mx-auto px-6 flex justify-between items-center">
@@ -29,6 +29,19 @@ const Navbar = ({ activePage, navigate, isMenuOpen, setIsMenuOpen, scrolled }) =
                 </div>
 
                 <div className="flex items-center gap-4">
+                    {/* Cart Indicator */}
+                    <button
+                        onClick={() => navigate('donations')}
+                        className="relative p-2 text-white hover:text-yellow-400 transition-colors"
+                    >
+                        <ShoppingBag size={24} />
+                        {cartCount > 0 && (
+                            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-green-900 animate-in zoom-in">
+                                {cartCount}
+                            </span>
+                        )}
+                    </button>
+
                     <button
                         onClick={() => navigate('donations')}
                         className="hidden md:flex bg-yellow-400 text-green-950 px-8 py-3 rounded-full font-bold text-lg hover:bg-white hover:scale-105 transition-all shadow-lg shadow-yellow-400/20"
