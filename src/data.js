@@ -144,8 +144,70 @@ export const SOCIAL_SERVICES = {
     }
 };
 
-export const POLITICAL_INFO = [
-    { name: "Chris Banks", role: "NYC Council Member, District 42", description: "Represents East New York, Starrett City, Brownsville, Canarsie, and East Flatbush. Council Member Banks is focused on public safety, affordable housing, and economic development for the district." },
-    { name: "Jumaane Williams", role: "NYC Public Advocate", description: "Citywide elected official who acts as an ombudsman for city services and a check on the mayor." },
-    { name: "Eric Adams", role: "Mayor of New York City", description: "Executive of the city government." }
-];
+export const POLITICAL_INFO = {
+    council_members: [
+        { district: 1, name: "Christopher Marte", borough: "Manhattan" },
+        { district: 2, name: "Harvey Epstein", borough: "Manhattan" },
+        { district: 3, name: "Erik Bottcher", borough: "Manhattan" },
+        { district: 4, name: "Keith Powers", borough: "Manhattan" },
+        { district: 5, name: "Julie Menin", borough: "Manhattan" },
+        { district: 6, name: "Gale A. Brewer", borough: "Manhattan" },
+        { district: 7, name: "Shaun Abreu", borough: "Manhattan" },
+        { district: 8, name: "Diana Ayala", borough: "Manhattan/Bronx" },
+        { district: 9, name: "Yusef Salaam", borough: "Manhattan" },
+        { district: 10, name: "Carmen De La Rosa", borough: "Manhattan" },
+        { district: 11, name: "Eric Dinowitz", borough: "Bronx" },
+        { district: 12, name: "Kevin C. Riley", borough: "Bronx" },
+        { district: 13, name: "Kristy Marmorato", borough: "Bronx" },
+        { district: 14, name: "Pierina Ana Sanchez", borough: "Bronx" },
+        { district: 15, name: "Oswald Feliz", borough: "Bronx" },
+        { district: 16, name: "Althea Stevens", borough: "Bronx" },
+        { district: 17, name: "Rafael Salamanca Jr.", borough: "Bronx" },
+        { district: 18, name: "Amanda Farías", borough: "Bronx" },
+        { district: 19, name: "Vickie Paladino", borough: "Queens" },
+        { district: 20, name: "Sandra Ung", borough: "Queens" },
+        { district: 21, name: "Francisco Moya", borough: "Queens" },
+        { district: 22, name: "Tiffany Cabán", borough: "Queens" },
+        { district: 23, name: "Linda Lee", borough: "Queens" },
+        { district: 24, name: "James F. Gennaro", borough: "Queens" },
+        { district: 25, name: "Shekar Krishnan", borough: "Queens" },
+        { district: 26, name: "Julie Won", borough: "Queens" },
+        { district: 27, name: "Dr. Nantasha Williams", borough: "Queens" },
+        { district: 28, name: "Adrienne E. Adams", borough: "Queens" },
+        { district: 29, name: "Lynn Schulman", borough: "Queens" },
+        { district: 30, name: "Robert F. Holden", borough: "Queens" },
+        { district: 31, name: "Selvena N. Brooks-Powers", borough: "Queens" },
+        { district: 32, name: "Joann Ariola", borough: "Queens" },
+        { district: 33, name: "Lincoln Restler", borough: "Brooklyn" },
+        { district: 34, name: "Jennifer Gutiérrez", borough: "Brooklyn, Queens" },
+        { district: 35, name: "Crystal Hudson", borough: "Brooklyn" },
+        { district: 36, name: "Chi Ossé", borough: "Brooklyn" },
+        { district: 37, name: "Sandy Nurse", borough: "Brooklyn" },
+        { district: 38, "name": "Alexa Avilés", "borough": "Brooklyn" },
+        { district: 39, name: "Shahana Hanif", borough: "Brooklyn" },
+        { district: 40, name: "Rita Joseph", borough: "Brooklyn" },
+        { district: 41, name: "Darlene Mealy", borough: "Brooklyn" },
+        { district: 42, name: "Chris Banks", borough: "Brooklyn" },
+        { district: 43, name: "Susan Zhuang", borough: "Brooklyn" },
+        { district: 44, name: "Simcha Felder", borough: "Brooklyn" },
+        { district: 45, name: "Farah N. Louis", borough: "Brooklyn" },
+        { district: 46, name: "Mercedes Narcisse", borough: "Brooklyn" },
+        { district: 47, name: "Justin Brannan", borough: "Brooklyn" },
+        { district: 48, name: "Inna Vernikov", borough: "Brooklyn" },
+        { district: 49, name: "Kamillah Hanks", borough: "Staten Island" },
+        { district: 50, name: "David Carr", borough: "Staten Island, Brooklyn" },
+        { district: 51, name: "Frank Morano", borough: "Staten Island" }
+    ],
+    borough_presidents: [
+        { borough: "Manhattan", name: "Mark Levine" },
+        { borough: "Brooklyn", name: "Antonio Reynoso" },
+        { borough: "Queens", name: "Donovan Richards" },
+        { borough: "Bronx", name: "Vanessa Gibson" },
+        { borough: "Staten Island", name: "Vito Fossella" }
+    ],
+    city_officials: [
+        { name: "Eric Adams", role: "Mayor of New York City" },
+        { name: "Jumaane Williams", role: "NYC Public Advocate" },
+        { name: "Brad Lander", role: "NYC Comptroller" }
+    ]
+};

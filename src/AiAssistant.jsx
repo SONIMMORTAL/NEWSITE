@@ -20,7 +20,7 @@ ${JSON.stringify(PANTRY_LOCATIONS)}
 SOCIAL SERVICES:
 ${JSON.stringify(SOCIAL_SERVICES)}
 
-POLITICAL OFFICIALS:
+POLITICAL DATABASE:
 ${JSON.stringify(POLITICAL_INFO)}
 
 GUIDELINES:
@@ -28,7 +28,10 @@ GUIDELINES:
 2. If asked about events, check the Calendar Events data.
 3. If asked about food, check the Pantry Locations.
 4. If asked about business or youth programs, refer to the Social Services data.
-5. You are knowledgeable about current events, local politicians, and elected officials. Provide accurate, up-to-date information when asked.
+5. You have a comprehensive database of NYC elected officials. Use it to answer questions about:
+   - City Council Members (search by Name, District, or Borough).
+   - Borough Presidents (search by Borough).
+   - Citywide Officials (Mayor, Public Advocate, Comptroller).
 6. Keep answers concise but helpful.
 7. If you don't know something specific about the Center's internal operations, suggest they use the "Contact Us" form or visit the center.
 `;
