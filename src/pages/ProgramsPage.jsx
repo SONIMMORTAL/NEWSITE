@@ -66,6 +66,16 @@ const ProgramsPage = ({ openContact }) => (
                         <p className="text-blue-100/90 mb-6 leading-relaxed max-w-md text-sm">
                             Home of <strong>DreamKids</strong> & <strong>BossyBabies</strong>. Creating rites of passage curriculums for troubled and at-risk youth.
                         </p>
+                        <div onClick={(e) => e.stopPropagation()} className="relative z-20">
+                            <a
+                                href="https://citypopfundraising.com/collections/citypop-snacks?bg_ref=GiNqP3t7tU"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-block mb-4 px-4 py-2 bg-yellow-400 text-blue-900 rounded-lg font-bold hover:bg-yellow-300 transition-colors shadow-lg"
+                            >
+                                Support Our Fundraiser
+                            </a>
+                        </div>
                         <div className="flex items-center gap-2 text-yellow-400 font-bold text-sm group-hover:gap-3 transition-all">
                             Learn More <ArrowRight size={16} />
                         </div>
