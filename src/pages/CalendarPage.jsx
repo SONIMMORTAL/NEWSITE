@@ -128,7 +128,7 @@ const CalendarPage = ({ openGetInvolved }) => {
         const currentTheme = MONTHLY_THEMES[currentDate.getMonth()];
 
         for (let i = 0; i < startDay; i++) {
-            days.push(<div key={`empty-${i}`} className="h-28 md:h-36 bg-slate-50/30 border border-slate-100/50"></div>);
+            days.push(<div key={`empty-${i}`} className="aspect-square md:aspect-auto md:h-36 bg-amber-50/30 border border-amber-100"></div>);
         }
 
         for (let day = 1; day <= totalDays; day++) {
@@ -142,13 +142,13 @@ const CalendarPage = ({ openGetInvolved }) => {
                     key={day}
                     onClick={() => handleDayClick(day)}
                     className={`
-                        h-28 md:h-36 border p-2 relative transition-all cursor-pointer group flex flex-col
-                        ${isToday ? 'bg-yellow-50 border-yellow-300 shadow-md ring-1 ring-yellow-200' : ''}
-                        ${hasEvents ? `${currentTheme?.highlight || 'bg-green-50/50'} border-green-200 hover:shadow-lg hover:-translate-y-1` : 'bg-white/80 border-slate-100 hover:bg-white'}
+                        aspect-square md:aspect-auto md:h-36 border p-1.5 md:p-2 relative transition-all cursor-pointer group flex flex-col
+                        ${isToday ? 'bg-yellow-100/80 border-yellow-400 shadow-md ring-1 ring-yellow-300' : ''}
+                        ${hasEvents ? `bg-green-50/60 border-green-300/70 hover:shadow-lg hover:-translate-y-0.5` : 'bg-amber-50/50 border-amber-100 hover:bg-white/60'}
                     `}
                 >
                     <div className="flex justify-between items-start mb-1">
-                        <span className={`text-sm font-bold w-7 h-7 flex items-center justify-center rounded-full ${isToday ? 'bg-yellow-400 text-green-900 shadow-sm' : hasEvents ? 'bg-white text-green-800 shadow-sm border border-green-100' : 'text-slate-400'}`}>
+                        <span className={`text-xs md:text-sm font-bold w-6 h-6 md:w-7 md:h-7 flex items-center justify-center rounded-full ${isToday ? 'bg-red-500 text-white shadow-md' : hasEvents ? 'bg-green-600 text-white shadow-sm' : 'text-amber-800/70'}`} style={{ fontFamily: 'Georgia, serif' }}>
                             {day}
                         </span>
                         {hasEvents && (
@@ -253,40 +253,74 @@ const CalendarPage = ({ openGetInvolved }) => {
                 </div>
             </div>
 
-            <div className="relative pt-6">
+            <div className="relative pt-8">
                 <SpiralBinding />
 
+                {/* Paper Base Shadow - gives depth like stacked pages */}
+                <div className="absolute -bottom-2 left-2 right-2 h-4 bg-amber-200/40 rounded-b-xl blur-sm" />
+                <div className="absolute -bottom-1 left-1 right-1 h-2 bg-amber-100/60 rounded-b-lg" />
+
+                {/* Main Calendar Container with Paper Texture */}
                 <div
-                    className={`backdrop-blur-xl border-t border-white/20 rounded-b-3xl rounded-t-lg shadow-[0_20px_50px_rgba(0,0,0,0.2)] overflow-hidden bg-gradient-to-br ${MONTHLY_THEMES[currentDate.getMonth()]?.gradient || "from-green-900 to-green-800"} transition-all duration-700`}
+                    className="relative rounded-lg shadow-[0_25px_60px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.3)] overflow-hidden"
                     style={{ perspective: '2000px', transformStyle: 'preserve-3d' }}
                 >
-                    <div className="flex items-center justify-between p-6 border-b border-white/10 z-20 relative text-white">
-                        <button onClick={handlePrevMonth} className="p-2 hover:bg-white/10 rounded-full transition-colors">
-                            <ChevronLeft />
-                        </button>
-                        <div className="text-center">
-                            <h2 className="text-2xl font-bold transition-all duration-300 drop-shadow-md">
-                                {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
-                            </h2>
+                    {/* Month Header with Theme Gradient */}
+                    <div className={`bg-gradient-to-br ${MONTHLY_THEMES[currentDate.getMonth()]?.gradient || "from-green-900 to-green-800"} transition-all duration-700`}>
+                        <div className="flex items-center justify-between p-4 md:p-6 border-b border-white/10 z-20 relative text-white">
+                            <button onClick={handlePrevMonth} className="p-2 md:p-3 hover:bg-white/10 rounded-full transition-colors active:scale-95">
+                                <ChevronLeft size={24} />
+                            </button>
+                            <div className="text-center">
+                                <h2 className="text-2xl md:text-3xl font-bold transition-all duration-300 drop-shadow-lg tracking-wide">
+                                    {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
+                                </h2>
+                            </div>
+                            <button onClick={handleNextMonth} className="p-2 md:p-3 hover:bg-white/10 rounded-full transition-colors active:scale-95">
+                                <ChevronRight size={24} />
+                            </button>
                         </div>
-                        <button onClick={handleNextMonth} className="p-2 hover:bg-white/10 rounded-full transition-colors">
-                            <ChevronRight />
-                        </button>
                     </div>
 
+                    {/* Paper Sheet with Texture */}
                     <div
-                        className={`transition-all ${animationClass}`}
+                        className={`relative transition-all ${animationClass}`}
                         style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
                     >
-                        <div className="grid grid-cols-7 text-center py-3 bg-black/10 border-b border-white/5 text-xs font-bold uppercase tracking-wider text-white/70">
+                        {/* Paper texture background */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-yellow-50/80 to-orange-50/60" />
+
+                        {/* Subtle paper grain noise overlay */}
+                        <div
+                            className="absolute inset-0 opacity-[0.03] mix-blend-multiply pointer-events-none"
+                            style={{
+                                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+                                backgroundRepeat: 'repeat',
+                            }}
+                        />
+
+                        {/* Subtle fold/crease line */}
+                        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-200/50 to-transparent" />
+
+                        {/* Day Headers */}
+                        <div className="relative grid grid-cols-7 text-center py-3 bg-amber-100/60 border-b border-amber-200/80 text-xs font-bold uppercase tracking-wider text-amber-900/70">
                             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                                <div key={day}>{day}</div>
+                                <div key={day} className="py-1">{day}</div>
                             ))}
                         </div>
 
-                        <div className="grid grid-cols-7 bg-white/5">
+                        {/* Calendar Grid with Paper Feel */}
+                        <div className="relative grid grid-cols-7 bg-amber-50/40">
                             {renderCalendarGrid()}
                         </div>
+
+                        {/* Page curl shadow effect - bottom right */}
+                        <div className="absolute bottom-0 right-0 w-16 h-16 pointer-events-none">
+                            <div className="absolute bottom-0 right-0 w-full h-full bg-gradient-to-tl from-amber-200/40 via-transparent to-transparent" />
+                        </div>
+
+                        {/* Left edge shadow for book depth */}
+                        <div className="absolute left-0 top-0 bottom-0 w-3 bg-gradient-to-r from-amber-200/30 to-transparent pointer-events-none" />
                     </div>
                 </div>
             </div>

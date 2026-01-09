@@ -11,7 +11,7 @@ import Toast from './components/ui/Toast';
 
 // Pages
 import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
+import OurWorkPage from './pages/OurWorkPage';
 import ProgramsPage from './pages/ProgramsPage';
 import FoodPantryPage from './pages/FoodPantryPage';
 import CalendarPage from './pages/CalendarPage';
@@ -111,7 +111,7 @@ const AppContent = () => {
 
             <main className="flex-grow">
                 {activePage === 'home' && <HomePage navigate={navigate} />}
-                {activePage === 'about' && <AboutPage openGetInvolved={openGetInvolved} />}
+                {activePage === 'our-work' && <OurWorkPage navigate={navigate} openGetInvolved={openGetInvolved} />}
                 {activePage === 'food-pantry' && <FoodPantryPage />}
                 {activePage === 'programs' && <ProgramsPage openContact={openContactModal} />}
                 {activePage === 'calendar' && <CalendarPage openGetInvolved={openGetInvolved} />}
