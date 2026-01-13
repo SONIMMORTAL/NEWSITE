@@ -1,36 +1,4 @@
 export const CALENDAR_DATA_2026 = {
-    // September 2025
-    8: [
-        { day: 1, title: "Back to Wellness Campaign", location: "Global", time: "All Day", type: "health", description: "Month-long focus on wellness, preparedness, and back-to-school energy." },
-        { day: 5, title: "Intl Day of Charity", location: "Global", time: "All Day", type: "community", description: "Highlight charitable work, donation drives, and partner nonprofits." },
-        { day: 8, title: "Intl Literacy Day", location: "Local Library", time: "All Day", type: "education", description: "Promote reading, education access, and learning resources." },
-        { day: 10, title: "Suicide Prevention Day", location: "Global", time: "All Day", type: "health", description: "Mental health awareness, helplines, and destigmatizing outreach." },
-        { day: 21, title: "Intl Day of Peace", location: "Global", time: "All Day", type: "community", description: "Content focusing on conflict resolution, community peace, and nonviolence." }
-    ],
-    // October 2025
-    9: [
-        { day: 1, title: "Health & Safety Campaign", location: "Global", time: "All Day", type: "health", description: "Month-long blend of breast cancer awareness, safety education, and appreciation." },
-        { day: 5, title: "World Teachers' Day", location: "Global", time: "All Day", type: "education", description: "Spotlight educators, mentors, and teaching programs." },
-        { day: 10, title: "World Mental Health Day", location: "Global", time: "All Day", type: "health", description: "Mental health check-ins, coping tools, and support resources." },
-        { day: 16, title: "World Food Day", location: "Pantry", time: "All Day", type: "community", description: "Food security, nutrition, and community meals content." },
-        { day: 17, title: "End Poverty Day", location: "Global", time: "All Day", type: "community", description: "Campaigns around anti-poverty work, policy, and lived experience voices." }
-    ],
-    // November 2025
-    10: [
-        { day: 1, title: "Gratitude & Giving Campaign", location: "Global", time: "All Day", type: "community", description: "Focus on gratitude, caregivers, and building toward Giving Tuesday." },
-        { day: 13, title: "World Kindness Day", location: "Global", time: "All Day", type: "community", description: "Random acts of kindness, community shoutouts, and positivity." },
-        { day: 14, title: "World Diabetes Day", location: "Global", time: "All Day", type: "health", description: "Education on diabetes prevention, treatment, and lived stories." },
-        { day: 20, title: "World Children's Day", location: "Kids Depo", time: "All Day", type: "youth", description: "Focus on children's rights, safety, and education." },
-        { day: 25, title: "Giving Season Kickoff", location: "Global", time: "All Day", type: "business", description: "Kickoff for end-of-year fundraising and gratitude posts." }
-    ],
-    // December 2025
-    11: [
-        { day: 1, title: "Holiday Reflection Campaign", location: "Global", time: "All Day", type: "community", description: "Wrap the year with reflection content and gratitude." },
-        { day: 1, title: "World AIDS Day", location: "Global", time: "All Day", type: "health", description: "HIV/AIDS awareness, history, and access to treatment resources." },
-        { day: 10, title: "Human Rights Day", location: "Global", time: "All Day", type: "community", description: "Content around human rights, justice work, and advocacy." },
-        { day: 25, title: "Christmas", location: "Global", time: "All Day", type: "culture", description: "Seasonal message, holiday gratitude, and family/community themes." },
-        { day: 26, title: "Kwanzaa Begins", location: "Global", time: "All Day", type: "culture", description: "Celebrate Kwanzaa principles and cultural heritage." }
-    ],
     // January 2026
     // Month-long: Walk Your Pet Month, Career & Technical Education Month, National Blood Donor Month,
     // Cervical Cancer Awareness Month, National Eye Care Month, National Oatmeal Month, Be Kind To Food Servers Month
@@ -185,6 +153,81 @@ export const CALENDAR_DATA_2026 = {
         { day: 21, title: "Senior Citizens Day", location: "Global", time: "All Day", type: "community", description: "Honoring the contributions of older adults." },
         { day: 26, title: "Women's Equality Day", location: "Global", time: "All Day", type: "community", description: "Commemorating the passage of the 19th Amendment." },
         { day: 26, title: "National Dog Day", location: "Global", time: "All Day", type: "family", description: "Celebrating dogs and encouraging adoption." }
+    ],
+    // September 2026
+    // Theme: Education & Preparedness
+    8: [
+        { day: 4, title: "World Beard Day", location: "Global", time: "All Day", type: "culture", description: "Celebrating the beard and the men who grow it." },
+        { day: 5, title: "Intl Day of Charity", location: "Global", time: "All Day", type: "community", description: "Raising awareness for charity and poverty alleviation." },
+        { day: 6, title: "Read a Book Day", location: "Libraries", time: "All Day", type: "culture", description: "Grab a book and enjoy some quiet reading time." },
+        { day: 8, title: "Star Trek Day", location: "Global", time: "All Day", type: "culture", description: "Celebrating the Star Trek franchise and its legacy." },
+        { day: 9, title: "Teddy Bear Day", location: "Global", time: "All Day", type: "family", description: "A day to celebrate our cuddly companions." },
+        { day: 11, title: "Patriot Day", location: "Global", time: "All Day", type: "community", description: "Honoring the victims of the September 11 attacks." },
+        { day: 12, title: "Healthcare Env Services Week Begins", location: "Hospitals", time: "All Day", type: "health", description: "Sept 12-18: Recognizing the critical role of EVS teams." },
+        { day: 12, title: "Intl Housekeepers Week Begins", location: "Global", time: "All Day", type: "business", description: "Sept 12-18: Appreciating professional housekeepers." },
+        { day: 12, title: "Truck Driver Appreciation Week Begins", location: "Global", time: "All Day", type: "business", description: "Sept 12-18: Thanking truck drivers for moving America." },
+        { day: 16, title: "Intl Ozone Layer Day", location: "Global", time: "All Day", type: "environment", description: "Preserving the ozone layer for future generations." },
+        { day: 18, title: "Coastal Cleanup Day", location: "Beaches", time: "All Day", type: "environment", description: "Cleaning up our beaches and coastlines." },
+        { day: 18, title: "World Cleanup Day", location: "Global", time: "All Day", type: "environment", description: "Uniting millions to clean up the planet." },
+        { day: 19, title: "Talk Like a Pirate Day", location: "Global", time: "All Day", type: "culture", description: "Ahoy matey! Speak like a pirate all day." },
+        { day: 19, title: "Surgical Technologists Week Begins", location: "Hospitals", time: "All Day", type: "health", description: "Sept 19-25: Celebrating surgical technologists." },
+        { day: 25, title: "National Public Lands Day", location: "Parks", time: "All Day", type: "environment", description: "Sept 20-26: Celebrating and caring for our public lands." },
+        { day: 26, title: "HR Professionals Day", location: "Corporate", time: "All Day", type: "business", description: "Recognizing HR professionals for their hard work." },
+        { day: 29, title: "World Heart Day", location: "Global", time: "All Day", type: "health", description: "Promoting heart health and cardiovascular disease prevention." }
+    ],
+    // October 2026
+    // Theme: Awareness & Homecoming
+    9: [
+        { day: 1, title: "World Smile Day", location: "Global", time: "All Day", type: "culture", description: "Do an act of kindness. Help one person smile!" },
+        { day: 4, title: "Children's Health Day", location: "Global", time: "All Day", type: "health", description: "Raising awareness for children's health issues." },
+        { day: 4, title: "Improve Your Office Day", location: "Offices", time: "All Day", type: "business", description: "Organize and clean up your workspace." },
+        { day: 4, title: "Fire Prevention Week Begins", location: "Global", time: "All Day", type: "community", description: "Oct 4-10: Learn about fire safety and prevention." },
+        { day: 4, title: "Mental Illness Awareness Week Begins", location: "Global", time: "All Day", type: "health", description: "Oct 4-10: Raising awareness and reducing stigma." },
+        { day: 5, title: "Customer Service Week Begins", location: "Business", time: "All Day", type: "business", description: "Oct 5-9: Recognizing the importance of customer service." },
+        { day: 11, title: "Indigenous Peoples' Day", location: "Global", time: "All Day", type: "culture", description: "Honoring the history and cultures of Indigenous peoples." },
+        { day: 11, title: "Columbus Day", location: "Global", time: "All Day", type: "culture", description: "Commemorating the landing of Christopher Columbus." },
+        { day: 16, title: "Boss's Day", location: "Workplaces", time: "All Day", type: "business", description: "Show appreciation for your boss and leadership." },
+        { day: 16, title: "World Food Day", location: "Global", time: "All Day", type: "community", description: "Promoting worldwide awareness and action for those who suffer from hunger." },
+        { day: 16, title: "Natl Mammography Day", location: "Clinics", time: "All Day", type: "health", description: "Encouraging women to get mammograms." },
+        { day: 18, title: "Pharmacy Week Begins", location: "Pharmacies", time: "All Day", type: "health", description: "Oct 18-24: Recognizing the contributions of pharmacists." },
+        { day: 23, title: "Red Ribbon Week Begins", location: "Schools", time: "All Day", type: "education", description: "Oct 23-31: Drug-Free America campaign." },
+        { day: 24, title: "United Nations Day", location: "Global", time: "All Day", type: "community", description: "Marking the anniversary of the UN Charter." },
+        { day: 25, title: "Respiratory Care Week Begins", location: "Hospitals", time: "All Day", type: "health", description: "Oct 25-31: Recognizing respiratory therapists." },
+        { day: 31, title: "Halloween", location: "Global", time: "All Day", type: "culture", description: "Trick or treat! Enjoy costumes and spooky fun." }
+    ],
+    // November 2026
+    // Theme: Heritage & Health
+    10: [
+        { day: 1, title: "Patient Transport Week Begins", location: "Hospitals", time: "All Day", type: "health", description: "Nov 1-7: Recognizing usage of patient transportation." },
+        { day: 7, title: "Hug a Bear Day", location: "Global", time: "All Day", type: "family", description: "Give your favorite teddy bear a hug!" },
+        { day: 7, title: "Radiologic Technology Week Begins", location: "Hospitals", time: "All Day", type: "health", description: "Nov 7-13: celebrating radiologic technologists." },
+        { day: 7, title: "Perioperative Nurses Week Begins", location: "Hospitals", time: "All Day", type: "health", description: "Nov 7-13: Honoring perioperative nurses." },
+        { day: 7, title: "Nurse Practitioner Week Begins", location: "Hospitals", time: "All Day", type: "health", description: "Nov 7-13: Recognizing nurse practitioners." },
+        { day: 11, title: "Veterans Day", location: "Global", time: "All Day", type: "community", description: "Honoring military veterans who served in the US Armed Forces." },
+        { day: 13, title: "World Kindness Day", location: "Global", time: "All Day", type: "community", description: "Promoting kindness throughout the world." },
+        { day: 14, title: "World Diabetes Day", location: "Global", time: "All Day", type: "health", description: "Raising awareness about diabetes and its impact." },
+        { day: 15, title: "America Recycles Day", location: "Global", time: "All Day", type: "environment", description: "Promoting recycling and buying recycled products." },
+        { day: 15, title: "American Education Week Begins", location: "Schools", time: "All Day", type: "education", description: "Nov 15-19: Celebrating public education." },
+        { day: 19, title: "Great American Smokeout", location: "Global", time: "All Day", type: "health", description: "Encouraging smokers to quit smoking." },
+        { day: 26, title: "Thanksgiving", location: "Global", time: "All Day", type: "family", description: "Day of giving thanks and sacrifice for the blessing of the harvest." },
+        { day: 28, title: "Small Business Saturday", location: "Local Shops", time: "All Day", type: "business", description: "Support your local small businesses." },
+        { day: 30, title: "Computer Security Day", location: "Global", time: "All Day", type: "business", description: "Raising awareness about computer security issues." },
+        { day: 30, title: "Mason Jar Day", location: "Global", time: "All Day", type: "culture", description: "Celebrating the versatility of the mason jar." },
+        { day: 30, title: "Hanukkah Approaches", location: "Global", time: "All Day", type: "culture", description: "Preparation for the Festival of Lights (Begins Dec 4)." }
+    ],
+    // December 2026
+    // Theme: Reflection & Celebration
+    11: [
+        { day: 1, title: "World AIDS Day", location: "Global", time: "All Day", type: "health", description: "Raising awareness and mourning those who have died of the disease." },
+        { day: 2, title: "Special Education Day", location: "Schools", time: "All Day", type: "education", description: "Celebrating the progress of special education." },
+        { day: 4, title: "National Cookie Day", location: "Global", time: "All Day", type: "family", description: "Bake or buy your favorite cookies to celebrate." },
+        { day: 7, title: "Pearl Harbor Remembrance Day", location: "Global", time: "All Day", type: "community", description: "Honoring the 2,403 citizens of the United States who were killed in the Pearl Harbor surprise attack." },
+        { day: 10, title: "Human Rights Day", location: "Global", time: "All Day", type: "community", description: "Commemorating the Universal Declaration of Human Rights." },
+        { day: 21, title: "Crossword Puzzle Day", location: "Global", time: "All Day", type: "culture", description: "Enjoy a crossword puzzle to challenge your mind." },
+        { day: 25, title: "Christmas", location: "Global", time: "All Day", type: "culture", description: "Celebrating the birth of Jesus and the holiday season." },
+        { day: 26, title: "National Thank You Note Day", location: "Global", time: "All Day", type: "family", description: "Write thank you notes for holiday gifts and kindness." },
+        { day: 26, title: "Kwanzaa Begins", location: "Global", time: "All Day", type: "culture", description: "Dec 26 - Jan 1: Celebrating African American culture and heritage." },
+        { day: 31, title: "New Year's Eve", location: "Global", time: "All Day", type: "culture", description: "Celebrating the end of the year and welcoming 2027!" }
     ]
 };
 
@@ -270,40 +313,44 @@ export const MONTHLY_THEMES = {
         monthlyObservances: ["National Immunization Awareness Month", "National Picnic Month", "National Golf Month", "New Student Orientation", "National Eye Exam Month", "Fishing Month"]
     },
     8: {
-        name: "Recovery & Preparedness",
-        gradient: "from-slate-900 via-zinc-800 to-neutral-900",
-        accent: "bg-slate-100 text-slate-800 border-slate-200",
-        highlight: "bg-slate-50/80",
-        brief: "Focus on recovery support and emergency preparedness as the seasons change.",
-        full: "September marks National Recovery Month, supporting those overcoming addiction. National Preparedness Month encourages emergency planning. It's also Suicide Prevention Month, promoting mental health resources and hope.",
-        monthlyObservances: ["National Recovery Month", "National Preparedness Month", "Suicide Prevention Month"]
+        name: "Education & Preparedness",
+        summary: "September focuses on education, preparedness, and awareness. From Back to School to Suicide Prevention, it's a month of learning and care.",
+        gradient: "from-indigo-600 via-purple-600 to-pink-500",
+        accent: "bg-indigo-100 text-indigo-800 border-indigo-200",
+        highlight: "bg-indigo-50/80",
+        brief: "Focus on Back to School, Preparedness Month, and community awareness.",
+        full: "September brings the start of autumn and a return to learning! We celebrate 'Back to School' while raising awareness for Preparedness, Campus Safety, and Suicide Prevention. It's also a time to appreciate our everyday heroes during Truck Driver and Housekeepers Week, and to give back on World Charity Day.",
+        monthlyObservances: ["Library Card Sign-up Month", "Preparedness Month", "Campus Safety Awareness Month", "Back to School", "Suicide Prevention Month", "Friendship Month", "Childhood Cancer Awareness Month", "Ovarian Cancer Awareness Month", "Shake Month"]
     },
     9: {
-        name: "Breast Cancer Awareness",
-        gradient: "from-pink-900 via-rose-800 to-fuchsia-900",
+        name: "Awareness & Homecoming",
+        summary: "October is a powerhouse of awareness, from Breast Cancer to Mental Illness. It's also a time for Homecoming celebrations and appreciating our community leaders.",
+        gradient: "from-pink-600 via-rose-500 to-red-500",
         accent: "bg-pink-100 text-pink-800 border-pink-200",
         highlight: "bg-pink-50/80",
-        brief: "October turns pink for breast cancer awareness while celebrating health professionals.",
-        full: "October is Breast Cancer Awareness Month, with pink ribbons everywhere promoting early detection and research. Domestic Violence Awareness Month supports survivors. National Bullying Prevention Month protects our youth. It's a month of advocacy and support.",
-        monthlyObservances: ["Breast Cancer Awareness Month", "Domestic Violence Awareness Month", "National Bullying Prevention Month"]
+        brief: "Support Breast Cancer Awareness, Homecoming, and Mental Illness Awareness.",
+        full: "October is marked by pink ribbons for Breast Cancer Awareness, but it also highlights Mental Illness, Dental Hygiene, and Bullying Prevention. It's a busy month of recognition for Pharmacists, Photographers, Principals, and Bosses, ending with the fun of Halloween!",
+        monthlyObservances: ["Breast Cancer Awareness Month", "National Book Month", "Homecoming", "Mental Illness Awareness Month", "National Dental Hygiene Month", "Photographer Appreciation Month", "Dyslexia Awareness Month", "Domestic Violence Awareness Month", "American Pharmacist's Month", "Bullying Prevention Month", "Crime Prevention Month", "Principals Month", "Physical Therapy Month"]
     },
     10: {
-        name: "Diabetes & Gratitude",
-        gradient: "from-purple-900 via-fuchsia-900 to-indigo-950",
+        name: "Heritage & Health",
+        summary: "November honors Native American Heritage and shines a light on Diabetes, Men's Health, and Alzheimer's. It's a time of gratitude with Thanksgiving and supporting our military families.",
+        gradient: "from-purple-900 via-indigo-900 to-slate-900",
         accent: "bg-purple-100 text-purple-800 border-purple-200",
         highlight: "bg-purple-50/80",
-        brief: "November brings diabetes awareness alongside gratitude and family caregiver appreciation.",
-        full: "November is National Diabetes Month, promoting awareness and prevention. National Family Caregivers Month honors those who care for loved ones. As Thanksgiving approaches, it's a time for gratitude and giving back to our communities.",
-        monthlyObservances: ["National Diabetes Month", "National Family Caregivers Month", "Lung Cancer Awareness Month"]
+        brief: "Celebrate Native American Heritage, Gratitude, and Men's Health Awareness.",
+        full: "November is a month of deep reflection and awareness. We honor Native American Heritage and Military Families. Health focus includes Diabetes, Lung Cancer, Epilepsy, and Alzheimer's. As we approach Thanksgiving, we also celebrate Family Caregivers and Home Care/Hospice Awareness.",
+        monthlyObservances: ["Native American Heritage Month", "American Diabetes Month", "Lung Cancer Awareness Month", "Movember (Men's Health)", "Epilepsy Awareness Month", "National Adoption Month", "National Alzheimer's Disease Month", "Military Family Month", "Home Care and Hospice Month"]
     },
     11: {
-        name: "Giving & Human Rights",
+        name: "Reflection & Celebration",
+        summary: "December mixes holiday joy with important awareness. We focus on Seasonal Depression, Safe Toys, and reading, while celebrating Christmas, Kwanzaa, and the New Year.",
         gradient: "from-red-900 via-green-900 to-slate-900",
         accent: "bg-red-100 text-red-800 border-red-200",
         highlight: "bg-red-50/80",
-        brief: "Close the year with holiday giving, human rights advocacy, and community reflection.",
-        full: "December wraps up the year with holiday celebrations and giving. World AIDS Day on December 1st raises awareness for HIV/AIDS. Human Rights Day honors the Universal Declaration of Human Rights. It's a season of generosity, reflection, and hope for the new year.",
-        monthlyObservances: ["Universal Human Rights Month", "Safe Toys and Gifts Month", "National Impaired Driving Prevention Month"]
+        brief: "Celebrate the holidays (Christmas, Kwanzaa, NYE) and focus on mental health with Seasonal Depression Awareness.",
+        full: "December is a time for family, reflection, and celebration. We honor traditions with Christmas and Kwanzaa, while looking forward to the New Year. It's also crucial to be mindful of mental health with Seasonal Depression Awareness Month and to ensure safety with Safe Toys and Gifts Month.",
+        monthlyObservances: ["Read a New Book Month", "Seasonal Depression Awareness Month", "Safe Toys and Gifts Month", "Plan Ahead for Health Awareness Month"]
     }
 };
 
