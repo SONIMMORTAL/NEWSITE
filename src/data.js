@@ -51,12 +51,23 @@ export const CALENDAR_DATA_2026 = {
         { day: 29, title: "Puzzle Day", location: "Global", time: "All Day", type: "culture", description: "Exercise your brain! Celebrate with puzzles, brain teasers, and family game time." }
     ],
     // February 2026
+    // Month-long: Black History Month, American Heart Month, Library Lovers Month,
+    // Senior Independence Month, Children's Dental Health Month, National Time Management Month
     1: [
-        { day: 1, title: "Heart Health & Black History", location: "Global", time: "All Day", type: "culture", description: "Blend Black History Month storytelling with heart health content." },
-        { day: 4, title: "World Cancer Day", location: "Global", time: "All Day", type: "health", description: "Cancer awareness, prevention, and survivorship stories." },
-        { day: 9, title: "Safer Internet Day", location: "Online", time: "All Day", type: "youth", description: "Online safety, digital literacy, and cyberbullying prevention." },
-        { day: 20, title: "Social Justice Day", location: "City Hall", time: "11:00 AM", type: "community", description: "Highlight structural inequities, activism, and policy work." },
-        { day: 28, title: "Rare Disease Day", location: "Global", time: "All Day", type: "health", description: "Spotlight rare disease communities and research." }
+        { day: 1, title: "Black History Month Begins", location: "Global", time: "All Day", type: "culture", description: "Celebrate and honor African American history, heritage, and achievements throughout February." },
+        { day: 1, title: "American Heart Month", location: "Global", time: "All Day", type: "health", description: "Raise awareness about cardiovascular health and heart disease prevention." },
+        { day: 1, title: "Library Lovers Month", location: "Local Library", time: "All Day", type: "education", description: "Show appreciation for libraries and promote reading throughout the community." },
+        { day: 1, title: "Children's Dental Health Month", location: "Global", time: "All Day", type: "health", description: "Education on dental hygiene for children and families." },
+        { day: 2, title: "Groundhog Day", location: "Global", time: "All Day", type: "culture", description: "Will the groundhog see its shadow? Fun seasonal tradition to kick off February." },
+        { day: 4, title: "Wear Red Day", location: "Global", time: "All Day", type: "health", description: "Wear red to raise awareness for women's heart health and cardiovascular disease." },
+        { day: 7, title: "Pride in Foodservice Week Begins", location: "Restaurants & Cafeterias", time: "All Day", type: "business", description: "February 7-11: Celebrate foodservice professionals and their dedication to feeding our communities." },
+        { day: 10, title: "Umbrella Day", location: "Global", time: "All Day", type: "culture", description: "Celebrate the humble umbrella! Perfect for promotional products and awareness gifts." },
+        { day: 13, title: "Cardiac Rehabilitation Week Begins", location: "Hospitals & Clinics", time: "All Day", type: "health", description: "February 13-19: Highlighting cardiac rehab programs and heart health recovery." },
+        { day: 14, title: "Valentine's Day", location: "Global", time: "All Day", type: "culture", description: "Celebrate love and friendship! Don't forget heart-shaped items and gifts." },
+        { day: 20, title: "National Engineers Week Begins", location: "Global", time: "All Day", type: "education", description: "February 20-26: Celebrate engineering achievements and inspire future engineers." },
+        { day: 21, title: "President's Day", location: "Global", time: "All Day", type: "culture", description: "Honor the legacy of US Presidents and American history." },
+        { day: 23, title: "School Bus Driver Appreciation Day", location: "Schools", time: "All Day", type: "community", description: "Thank the dedicated school bus drivers who safely transport students every day." },
+        { day: 28, title: "Rare Disease Day", location: "Global", time: "All Day", type: "health", description: "Spotlight rare disease communities, research, and patient advocacy." }
     ],
     // March 2026
     2: [
@@ -121,12 +132,13 @@ export const MONTHLY_THEMES = {
     },
     1: {
         name: "Heart Health & Black History",
+        summary: "February celebrates love, history, and heart health. Don't forget heart-shaped items for Valentine's Day and branded products to raise awareness!",
         gradient: "from-red-950 via-red-800 to-orange-900",
         accent: "bg-red-100 text-red-800 border-red-200",
         highlight: "bg-red-50/80",
-        brief: "Honor Black History Month while raising awareness for heart health and cancer prevention.",
-        full: "February brings together two powerful themes: celebrating Black History Month and American Heart Month. It's a time to reflect on the contributions of African Americans throughout history while promoting cardiovascular health awareness. World Cancer Day and Rare Disease Day also remind us to support those fighting health battles.",
-        monthlyObservances: ["Black History Month", "American Heart Month", "National Cancer Prevention Month"]
+        brief: "Honor Black History Month while raising awareness for heart health, dental care, and celebrating love on Valentine's Day.",
+        full: "Incorporate imprinted promotional products and awareness gifts to commemorate February's monthly events. Personalized umbrellas are great for Umbrella Day, and don't forget heart shaped items for Valentine's Day. Our branded items and personalized products raise awareness and add relevance to your brand.",
+        monthlyObservances: ["Black History Month", "American Heart Month", "Library Lovers Month", "Senior Independence Month", "Children's Dental Health Month", "National Time Management Month"]
     },
     2: {
         name: "Nutrition & Social Work",

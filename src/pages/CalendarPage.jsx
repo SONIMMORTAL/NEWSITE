@@ -1,11 +1,31 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, CalendarPlus, ChevronLeft, ChevronRight, ChevronDown, Smile, Clock, Trash2, Plus, X, Heart, Info } from 'lucide-react';
+import {
+    CalendarPlus, ChevronLeft, ChevronRight, ChevronDown, Smile, Clock, Trash2, Plus, X, Heart, Info,
+    Snowflake, HeartHandshake, Flower2, TreeDeciduous, Sun, Palmtree, GraduationCap, Leaf, Sparkles, Gift
+} from 'lucide-react';
 import SectionHeader from '../components/ui/SectionHeader';
 import SpiralBinding from '../components/ui/SpiralBinding';
 import CalendarEvent from '../components/features/CalendarEvent';
 import CalendarDayCell from '../components/features/CalendarDayCell';
+import { PaperTexture } from '../components/ui/TextureOverlay';
 import { MONTHLY_THEMES, CALENDAR_DATA_2026 } from '../data';
+
+// Premium icons for each month - elegant and meaningful
+const MONTH_ICONS = {
+    0: Snowflake,      // January - Winter/New Beginnings
+    1: HeartHandshake, // February - Love/Black History
+    2: Flower2,        // March - Spring/Women's History
+    3: TreeDeciduous,  // April - Earth/Growth
+    4: Flower2,        // May - Flowers/Mothers
+    5: Sun,            // June - Summer/Pride
+    6: Palmtree,       // July - Summer/Independence
+    7: GraduationCap,  // August - Back to School
+    8: Leaf,           // September - Fall/Wellness
+    9: Sparkles,       // October - Fall/Awareness
+    10: Heart,         // November - Thanksgiving/Gratitude
+    11: Gift,          // December - Holidays/Giving
+};
 
 const generateInitialEvents = () => {
     const events = {};
@@ -223,15 +243,22 @@ const CalendarPage = ({ openGetInvolved }) => {
                 transition={{ delay: 0.2 }}
             >
                 {/* Gradient Header */}
-                <div className={`bg-gradient-to-r ${currentTheme?.gradient || "from-green-900 to-green-800"} p-6 text-white`}>
-                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div className={`bg-gradient-to-r ${currentTheme?.gradient || "from-green-900 to-green-800"} p-6 text-white relative overflow-hidden`}>
+                    {/* Subtle texture on header */}
+                    <div className="absolute inset-0 opacity-10" style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+                    }} />
+                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 relative z-10">
                         <div className="flex items-center gap-4">
                             <motion.div
-                                className="p-3 bg-white/10 rounded-xl backdrop-blur-sm"
-                                animate={{ rotate: [0, 5, -5, 0] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                className="p-3 bg-white/15 rounded-xl backdrop-blur-sm border border-white/20 shadow-lg"
+                                whileHover={{ scale: 1.05, rotate: 5 }}
+                                transition={{ type: 'spring', stiffness: 300 }}
                             >
-                                <Sparkles size={24} className="text-yellow-300" />
+                                {(() => {
+                                    const MonthIcon = MONTH_ICONS[currentDate.getMonth()] || HeartHandshake;
+                                    return <MonthIcon size={28} className="text-white drop-shadow-lg" strokeWidth={1.5} />;
+                                })()}
                             </motion.div>
                             <div>
                                 <div className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">
@@ -387,12 +414,14 @@ const CalendarPage = ({ openGetInvolved }) => {
                         {/* Paper texture background */}
                         <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-yellow-50/80 to-orange-50/60" />
 
-                        {/* Subtle paper grain noise overlay */}
+                        {/* Enhanced Paper Texture - Multiple Layers */}
+                        <PaperTexture />
+
+                        {/* Additional paper grain for realism */}
                         <div
-                            className="absolute inset-0 opacity-[0.03] mix-blend-multiply pointer-events-none"
+                            className="absolute inset-0 opacity-[0.05] mix-blend-multiply pointer-events-none"
                             style={{
-                                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-                                backgroundRepeat: 'repeat',
+                                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E")`,
                             }}
                         />
 
@@ -433,7 +462,10 @@ const CalendarPage = ({ openGetInvolved }) => {
                 >
                     <div className="flex items-center gap-3">
                         <span className={`p-2 rounded-lg bg-gradient-to-br ${currentTheme?.gradient}`}>
-                            <Sparkles className="w-5 h-5 text-white" />
+                            {(() => {
+                                const MonthIcon = MONTH_ICONS[currentDate.getMonth()] || HeartHandshake;
+                                return <MonthIcon className="w-5 h-5 text-white" strokeWidth={1.5} />;
+                            })()}
                         </span>
                         <div className="text-left">
                             <h3 className="text-xl font-bold text-green-900">
