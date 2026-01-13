@@ -6,6 +6,7 @@ import SectionHeader from '../components/ui/SectionHeader';
 import FadeInSection from '../components/ui/FadeInSection';
 import GradientText from '../components/ui/GradientText';
 import AnimatedShinyButton from '../components/ui/AnimatedShinyButton';
+import AIInput from '../components/ui/AIInput';
 import { PANTRY_LOCATIONS } from '../data';
 import { callGemini } from '../services/gemini';
 
@@ -32,7 +33,7 @@ const FoodPantryPage = () => {
     };
 
     return (
-        <div className="pt-32 pb-20 px-6 max-w-[1200px] mx-auto">
+        <div className="pt-20 pb-20 px-6 max-w-[1200px] mx-auto">
             <FadeInSection>
                 <div className="text-center max-w-3xl mx-auto mb-12">
                     <motion.div
@@ -94,10 +95,10 @@ const FoodPantryPage = () => {
                                     </div>
                                 </div>
                                 <span className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider self-start sm:self-auto ${pantry.status === 'Open'
-                                        ? 'bg-green-100 text-green-700 border border-green-200'
-                                        : pantry.status === 'Closed'
-                                            ? 'bg-red-100 text-red-700 border border-red-200'
-                                            : 'bg-orange-100 text-orange-700 border border-orange-200'
+                                    ? 'bg-green-100 text-green-700 border border-green-200'
+                                    : pantry.status === 'Closed'
+                                        ? 'bg-red-100 text-red-700 border border-red-200'
+                                        : 'bg-orange-100 text-orange-700 border border-orange-200'
                                     }`}>
                                     {pantry.status}
                                 </span>
@@ -126,20 +127,13 @@ const FoodPantryPage = () => {
                                     </p>
                                 </div>
                                 <div className="p-6 space-y-4">
-                                    <textarea
+                                    <AIInput
                                         value={ingredients}
                                         onChange={(e) => setIngredients(e.target.value)}
-                                        placeholder="e.g. Rice, Beans, Canned Tomatoes..."
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent h-24 resize-none transition-all"
+                                        onSubmit={handleGenerateRecipe}
+                                        loading={loading}
+                                        placeholder="Enter ingredients (e.g. Rice, Beans, Canned Tomatoes...)"
                                     />
-                                    <AnimatedShinyButton
-                                        onClick={handleGenerateRecipe}
-                                        disabled={loading || !ingredients}
-                                        variant="primary"
-                                        className="w-full !bg-green-600 hover:!bg-green-700"
-                                    >
-                                        {loading ? <Loader2 className="animate-spin" size={18} /> : "Create Recipe"}
-                                    </AnimatedShinyButton>
                                 </div>
                                 {recipe && (
                                     <motion.div

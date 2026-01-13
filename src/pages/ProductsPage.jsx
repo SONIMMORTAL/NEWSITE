@@ -36,7 +36,7 @@ const PRODUCTS = [
 ];
 
 const ProductsPage = ({ addToCart }) => (
-    <div className="pt-32 pb-20 px-6 max-w-[1200px] mx-auto">
+    <div className="pt-20 pb-20 px-6 max-w-[1200px] mx-auto">
         <SectionHeader
             pill="Store"
             title="Shop & Support"

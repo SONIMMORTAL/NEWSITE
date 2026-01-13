@@ -35,7 +35,7 @@ const DonationsPage = ({ cartTotal = 0, cartItems = [], removeFromCart }) => {
     ];
 
     return (
-        <div className="pt-32 pb-20 px-6 max-w-[900px] mx-auto">
+        <div className="pt-20 pb-20 px-6 max-w-[900px] mx-auto">
             <CheckoutModal
                 isOpen={isCheckoutOpen}
                 onClose={() => setIsCheckoutOpen(false)}

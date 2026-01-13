@@ -8,7 +8,7 @@ import AnimatedShinyButton from '../components/ui/AnimatedShinyButton';
 import { ASSETS } from '../constants/assets';
 
 const OurWorkPage = ({ navigate, openGetInvolved }) => (
-    <div className="pt-32 pb-20">
+    <div className="pt-20 pb-20">
         {/* Hero Section */}
         <section className="px-6 max-w-[1200px] mx-auto mb-20">
             <FadeInSection>

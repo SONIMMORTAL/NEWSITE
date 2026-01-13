@@ -10,7 +10,7 @@ import { ASSETS } from '../constants/assets';
 
 const AboutPage = ({ openGetInvolved }) => {
     return (
-        <div className="pt-32 pb-20 px-4 md:px-8 max-w-[1200px] mx-auto space-y-20">
+        <div className="pt-20 pb-20 px-4 md:px-8 max-w-[1200px] mx-auto space-y-20">
             {/* Hero Section */}
             <FadeInSection>
                 <div className="text-center max-w-3xl mx-auto">

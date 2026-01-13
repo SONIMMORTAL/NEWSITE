@@ -9,7 +9,7 @@ import AnimatedShinyButton from '../components/ui/AnimatedShinyButton';
 import { ASSETS } from '../constants/assets';
 
 const ProgramsPage = ({ openContact }) => (
-    <div className="pt-32 pb-20 px-6 max-w-[1200px] mx-auto">
+    <div className="pt-20 pb-20 px-6 max-w-[1200px] mx-auto">
         <FadeInSection>
             <div className="text-center max-w-3xl mx-auto mb-16">
                 <motion.div

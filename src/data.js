@@ -114,28 +114,63 @@ export const CALENDAR_DATA_2026 = {
         { day: 29, title: "National Arbor Day", location: "Outdoors", time: "All Day", type: "environment", description: "Plant trees and care for our woodlands." }
     ],
     // May 2026
+    // Theme: Health & Care
     4: [
-        { day: 1, title: "Nurses & Mental Health", location: "Global", time: "All Day", type: "health", description: "Honor nurses while pushing mental health and fitness content." },
-        { day: 3, title: "Press Freedom Day", location: "Global", time: "All Day", type: "culture", description: "Free press, information access, and media literacy." },
-        { day: 8, title: "World Fair Trade Day", location: "Global", time: "All Day", type: "business", description: "Ethical sourcing, fair wages, and global trade justice." },
-        { day: 17, title: "IDAHOBIT", location: "Global", time: "All Day", type: "community", description: "LGBTQ+ inclusion, rights, and anti-violence work." },
-        { day: 22, title: "Biological Diversity Day", location: "Global", time: "All Day", type: "environment", description: "Ecosystems, endangered species, and biodiversity education." }
+        { day: 1, title: "New Home Owners Day", location: "Global", time: "All Day", type: "business", description: "Celebrate new beginnings with personalized real estate gifts." },
+        { day: 1, title: "Public Service Recognition Week Begins", location: "Global", time: "All Day", type: "community", description: "May 1-7: Honoring the men and women who serve our nation." },
+        { day: 1, title: "National Hospital Week Begins", location: "Hospitals", time: "All Day", type: "health", description: "May 1-7: Celebrating hospitals and health systems." },
+        { day: 2, title: "Correctional Officers Week Begins", location: "Global", time: "All Day", type: "community", description: "May 2-8: Recognizing the work of correctional officers." },
+        { day: 2, title: "Teacher Appreciation Week Begins", location: "Schools", time: "All Day", type: "education", description: "May 2-6: Showing gratitude to educators everywhere." },
+        { day: 3, title: "National Teacher Day", location: "Schools", time: "All Day", type: "education", description: "A special day to thank teachers for their dedication." },
+        { day: 4, title: "International Firefighters Day", location: "Fire Stations", time: "All Day", type: "community", description: "Honoring firefighters for their courage and sacrifice." },
+        { day: 5, title: "Cinco De Mayo", location: "Global", time: "All Day", type: "culture", description: "Celebrate Mexican heritage and pride." },
+        { day: 6, title: "Nurses Week Begins", location: "Hospitals", time: "All Day", type: "health", description: "May 6-12: Honor and thank healthcare workers for their dedication." },
+        { day: 8, title: "Mother's Day", location: "Global", time: "All Day", type: "family", description: "Celebrating mothers and motherhood." },
+        { day: 8, title: "Nursing Home Week Begins", location: "Nursing Homes", time: "All Day", type: "health", description: "May 8-14: Celebrating residents and staff in long-term care." },
+        { day: 8, title: "National Women's Health Week Begins", location: "Global", time: "All Day", type: "health", description: "May 8-14: Empowering women to make their health a priority." },
+        { day: 8, title: "National Skilled Nursing Care Week Begins", location: "Nursing Homes", time: "All Day", type: "health", description: "May 8-14: Honoring skilled nursing care providers." },
+        { day: 11, title: "School Nurse Day", location: "Schools", time: "All Day", type: "health", description: "Recognizing the vital role of school nurses." },
+        { day: 15, title: "National Police Week Begins", location: "Global", time: "All Day", type: "community", description: "May 15-21: Honoring law enforcement officers." },
+        { day: 15, title: "National EMS Week Begins", location: "Global", time: "All Day", type: "health", description: "May 15-21: Appreciation for emergency medical services." },
+        { day: 16, title: "Barbecue Day", location: "Outdoors", time: "All Day", type: "culture", description: "Fire up the grill and enjoy a meal outdoors." },
+        { day: 18, title: "International Museum Day", location: "Museums", time: "All Day", type: "culture", description: "Celebrating the importance of museums." },
+        { day: 18, title: "National Employee Health & Fitness Day", location: "Workplaces", time: "All Day", type: "health", description: "Promoting physical activity and health in the workplace." },
+        { day: 20, title: "Bike to Work Day", location: "Global", time: "All Day", type: "environment", description: "Encouraging commuting by bicycle." },
+        { day: 27, title: "Sunscreen Day", location: "Outdoors", time: "All Day", type: "health", description: "Raising awareness about sun safety and skin protection." },
+        { day: 30, title: "Memorial Day", location: "Global", time: "All Day", type: "community", description: "Remembering and honoring those who died serving in the armed forces." }
     ],
     // June 2026
+    // Theme: Pride, Grads & Outdoors
     5: [
-        { day: 1, title: "Pride & Outdoors", location: "Global", time: "All Day", type: "culture", description: "Blend Pride Month content with outdoor recreation and safety." },
-        { day: 5, title: "World Environment Day", location: "Global", time: "All Day", type: "environment", description: "Environmental action, cleanups, and climate focus." },
-        { day: 8, title: "World Oceans Day", location: "Global", time: "All Day", type: "environment", description: "Ocean health, plastic pollution, and coastal communities." },
-        { day: 20, title: "World Refugee Day", location: "Global", time: "All Day", type: "community", description: "Stories, rights, and support for displaced people." },
-        { day: 26, title: "Gay Pride Day", location: "Global", time: "All Day", type: "culture", description: "Celebrate LGBTQ+ communities and Pride events." }
+        { day: 3, title: "World Bicycle Day", location: "Global", time: "All Day", type: "environment", description: "Promoting cycling for health and sustainability." },
+        { day: 5, title: "World Environment Day", location: "Global", time: "All Day", type: "environment", description: "Encouraging awareness and action for the protection of our environment." },
+        { day: 5, title: "Yo-Yo Day", location: "Global", time: "All Day", type: "culture", description: "Have some fun and practice your yo-yo skills!" },
+        { day: 10, title: "National Ballpoint Pen Day", location: "Global", time: "All Day", type: "culture", description: "Celebrating the invention of the ballpoint pen." },
+        { day: 13, title: "Intl Men's Health Week Begins", location: "Global", time: "All Day", type: "health", description: "June 13-20: Focusing on health issues facing men and boys." },
+        { day: 14, title: "World Blood Donor Day", location: "Clinics", time: "All Day", type: "health", description: "raising awareness of the need for safe blood products and thanking donors." },
+        { day: 14, title: "Flag Day", location: "Global", time: "All Day", type: "culture", description: "Commemorating the adoption of the United States flag." },
+        { day: 16, title: "Nursing Assistants Week Begins", location: "Hospitals", time: "All Day", type: "health", description: "June 16-22: Recognizing the vital role of nursing assistants." },
+        { day: 19, title: "Juneteenth", location: "Global", time: "All Day", type: "culture", description: "Commemorating the emancipation of enslaved African Americans." },
+        { day: 19, title: "Father's Day", location: "Global", time: "All Day", type: "family", description: "Honoring fathers and celebrating fatherhood." },
+        { day: 21, title: "First Day of Summer", location: "Global", time: "All Day", type: "environment", description: "The summer solstice - the longest day of the year." },
+        { day: 21, title: "International Day of Yoga", location: "Parks", time: "10:00 AM", type: "health", description: "Celebrating the physical and spiritual practice of yoga." },
+        { day: 26, title: "Beautician's Day", location: "Salons", time: "All Day", type: "business", description: "Appreciating the work of beauticians and cosmetologists." },
+        { day: 27, title: "Sunglasses Day", location: "Outdoors", time: "All Day", type: "culture", description: "Protect your eyes and look cool with your favorite shades." }
     ],
     // July 2026
+    // Theme: Summer & Social Wellness
     6: [
-        { day: 1, title: "Summer Fun & Families", location: "Global", time: "All Day", type: "family", description: "Picnics, reunions, family wellness, and outdoor safety." },
-        { day: 11, title: "World Population Day", location: "Global", time: "All Day", type: "community", description: "Population growth, resources, and planning content." },
-        { day: 28, title: "World Hepatitis Day", location: "Global", time: "All Day", type: "health", description: "Hepatitis prevention, testing, and treatment awareness." },
-        { day: 29, title: "Intl Tiger Day", location: "Global", time: "All Day", type: "environment", description: "Wildlife conservation and big cat protection." },
-        { day: 30, title: "End Human Trafficking", location: "Global", time: "All Day", type: "community", description: "Anti-trafficking education, survivor support, and policy work." }
+        { day: 3, title: "Intl Plastic Bag Free Day", location: "Global", time: "All Day", type: "environment", description: "Encouraging a plastic-free world." },
+        { day: 4, title: "Independence Day", location: "Global", time: "All Day", type: "community", description: "Celebrating the independence of the United States." },
+        { day: 10, title: "Teddy Bear Picnic Day", location: "Parks", time: "All Day", type: "family", description: "Grab your teddy bear and head outdoors for a picnic!" },
+        { day: 10, title: "Therapeutic Recreation Week Begins", location: "Centers", time: "All Day", type: "health", description: "July 10-16: Recognizing the importance of therapeutic recreation." },
+        { day: 17, title: "World Emoji Day", location: "Global", time: "All Day", type: "culture", description: "Celebrating the pictorial language of emojis." },
+        { day: 17, title: "Tattoo Day", location: "Global", time: "All Day", type: "culture", description: "Celebrating body art and self-expression." },
+        { day: 17, title: "National Ice Cream Day", location: "Global", time: "All Day", type: "culture", description: "Enjoy a scoop of your favorite flavor!" },
+        { day: 18, title: "Global Hug Your Kids Day", location: "Global", time: "All Day", type: "family", description: "Reminding parents to hug their children." },
+        { day: 20, title: "Fortune Cookie Day", location: "Global", time: "All Day", type: "culture", description: "Crack open a cookie and see what your future holds." },
+        { day: 20, title: "National Lollipop Day", location: "Global", time: "All Day", type: "culture", description: "Enjoy a sweet treat on a stick." },
+        { day: 24, title: "Parents Day", location: "Global", time: "All Day", type: "family", description: "Honoring parents for their dedication and love." }
     ],
     // August 2026
     7: [
@@ -189,31 +224,34 @@ export const MONTHLY_THEMES = {
         monthlyObservances: ["Garden Month", "Alcohol Awareness Month", "National Parkinson's Awareness Month", "911 Education Month", "Distracted Driving Awareness Month", "Month of the Military Child", "Stress Awareness Month", "National Financial Literacy Month", "National Occupational Therapy Month", "Cancer Control Month", "Sexual Assault Awareness Month", "Campus Pride Month", "Animal Cruelty Prevention Month", "National Humor Month"]
     },
     4: {
-        name: "Mental Health & Fitness",
+        name: "Health & Care",
+        summary: "May focuses on health and care. Thank healthcare workers, promote physical fitness, and raise awareness for mental health.",
         gradient: "from-teal-900 via-cyan-800 to-blue-950",
-        accent: "bg-cyan-100 text-cyan-800 border-cyan-200",
-        highlight: "bg-cyan-50/80",
-        brief: "May spotlights mental health awareness while celebrating physical fitness and nurses.",
-        full: "May is Mental Health Awareness Month, a crucial time to reduce stigma and promote wellness. National Nurses Week honors healthcare heroes, while National Physical Fitness and Sports Month encourages active living. It's also Older Americans Month, celebrating our seniors.",
-        monthlyObservances: ["Mental Health Awareness Month", "National Physical Fitness Month", "Older Americans Month"]
+        accent: "bg-teal-100 text-teal-800 border-teal-200",
+        highlight: "bg-teal-50/80",
+        brief: "Prioritize health with Nurses Week, Mental Health Month, and physical fitness initiatives.",
+        full: "Prioritize your brand with May's calendar of fun national days. Thank healthcare workers with gifts for nurses during Nurses Week. Shop awareness bracelets for American Stroke Month or personalized real estate closing pouches for New Homeowners Day. May is also National Physical Fitness month, a perfect time for custom fitness gear or reflective stickers to encourage physical activity.",
+        monthlyObservances: ["Better Hearing and Speech Month", "Global Employee Health & Fitness Month", "National Cancer Research Month", "Mental Health Month", "Lou Gehrig Disease Awareness Month", "National Foster Care Month", "Bike Safety Month", "National Physical Fitness and Sports Month", "Healthy Vision Month", "National American Stroke Month", "National Osteoporosis Awareness and Prevention Month", "National High Blood Pressure Education Month", "National Melanoma/Skin Cancer Awareness Month", "Older Americans Month", "Oncology Nursing Month"]
     },
     5: {
-        name: "Safety & Outdoors",
-        gradient: "from-orange-800 via-amber-700 to-yellow-900",
+        name: "Pride, Grads & Outdoors",
+        summary: "Celebrate Pride, honor graduates and fathers, and enjoy the great outdoors with safety in mind.",
+        gradient: "from-orange-500 via-amber-500 to-yellow-500",
         accent: "bg-orange-100 text-orange-800 border-orange-200",
         highlight: "bg-orange-50/80",
-        brief: "Celebrate Pride Month and enjoy the great outdoors while promoting safety awareness.",
-        full: "June kicks off summer with Pride Month celebrations honoring LGBTQ+ communities. National Safety Month promotes accident prevention, while Great Outdoors Month encourages families to explore nature. Men's Health Month focuses on wellness for fathers and sons.",
-        monthlyObservances: ["Pride Month", "National Safety Month", "Great Outdoors Month", "Men's Health Month"]
+        brief: "Celebrate Pride Month, graduates, and Father's Day while enjoying the outdoors safely.",
+        full: "June is a month of celebration and awareness! We honor LGBTQ+ Pride, celebrate the achievements of graduates, and show appreciation for fathers. It's also National Safety Month and a great time to explore the outdoors. Don't forget to indulge in some sweets for National Candy Month!",
+        monthlyObservances: ["LGBTQ Pride Month", "National Safety Month", "National Candy Month", "National Great Outdoors Month", "Graduation Season"]
     },
     6: {
-        name: "Social Wellness & Family",
-        gradient: "from-indigo-900 via-violet-800 to-purple-900",
-        accent: "bg-indigo-100 text-indigo-800 border-indigo-200",
-        highlight: "bg-indigo-50/80",
-        brief: "July celebrates family connections, picnics, and summer gatherings.",
-        full: "July is the perfect month for family reunions, community picnics, and celebrating our independence. It's National Picnic Month, encouraging outdoor gatherings and community bond-building. Focus on social wellness and creating lasting memories with loved ones.",
-        monthlyObservances: ["National Picnic Month", "Cell Phone Courtesy Month", "Juvenile Arthritis Awareness Month"]
+        name: "Summer & Social Wellness",
+        summary: "July is a peak time to celebrate the outdoors and spend time with neighbors, family and friends.",
+        gradient: "from-blue-500 via-cyan-400 to-teal-400",
+        accent: "bg-blue-100 text-blue-800 border-blue-200",
+        highlight: "bg-blue-50/80",
+        brief: "Celebrate Independence Day, family reunions, and outdoor fun with neighbors and friends.",
+        full: "July is the peak of summer! It's a time to celebrate our independence, fire up the grill, and enjoy the great outdoors. From family reunions to picnics in the park, let's focus on social wellness and connecting with our community. Don't forget your sunscreen for UV Safety Month!",
+        monthlyObservances: ["Social Wellness Month", "Wedding Season", "Family Reunion Month", "UV Safety Month", "Picnic Month", "National Cell Phone Courtesy Month", "National Culinary Arts Month", "National Recreation and Parks Month", "National Grilling Month"]
     },
     7: {
         name: "Back to School & Immunization",

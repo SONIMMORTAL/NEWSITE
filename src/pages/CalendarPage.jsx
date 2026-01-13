@@ -236,7 +236,7 @@ const CalendarPage = ({ openGetInvolved }) => {
                 }}
             />
 
-            <div className="relative z-10 pt-32 pb-20 px-6 max-w-[1200px] mx-auto">
+            <div className="relative z-10 pt-20 pb-20 px-6 max-w-[1200px] mx-auto">
                 <style>{flipStyles}</style>
 
                 {/* Animated Header Section */}

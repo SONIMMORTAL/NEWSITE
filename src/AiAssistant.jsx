@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, Send, X, Sparkles, Loader2, Minimize2, Maximize2, User, Bot } from 'lucide-react';
+import AIInput from './components/ui/AIInput';
 import { CALENDAR_DATA_2026, PANTRY_LOCATIONS, SOCIAL_SERVICES, POLITICAL_INFO } from './data';
 
 const API_KEY = import.meta.env.acc; // Securely loaded from environment variables
@@ -167,23 +168,14 @@ const AiAssistant = () => {
 
             {/* Input */}
             <div className="p-3 bg-white border-t border-slate-100 shrink-0">
-                <div className="relative">
-                    <input
-                        type="text"
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        onKeyDown={handleKeyPress}
-                        placeholder="Ask about events, pantries..."
-                        className="w-full pl-4 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-green-500 focus:bg-white transition-all shadow-inner"
-                    />
-                    <button
-                        onClick={handleSend}
-                        disabled={!input.trim() || isLoading}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-green-900 text-white rounded-lg hover:bg-green-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-md"
-                    >
-                        {isLoading ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
-                    </button>
-                </div>
+                <AIInput
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onSubmit={handleSend}
+                    loading={isLoading}
+                    placeholder="Ask about events, pantries..."
+                    className="shadow-sm"
+                />
                 <div className="text-center mt-2">
                     <p className="text-[10px] text-slate-400 font-medium">
                         Powered by Gemini AI • Information may vary
