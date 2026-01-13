@@ -70,20 +70,48 @@ export const CALENDAR_DATA_2026 = {
         { day: 28, title: "Rare Disease Day", location: "Global", time: "All Day", type: "health", description: "Spotlight rare disease communities, research, and patient advocacy." }
     ],
     // March 2026
+    // Month-long: American Red Cross Month, National Women's History Month, National Social Work Month,
+    // National Ethics Awareness Month, National Nutrition Month
     2: [
-        { day: 1, title: "Nutrition & Women's History", location: "Global", time: "All Day", type: "health", description: "Tie together Nutrition Month and Women's History Month." },
+        { day: 1, title: "American Red Cross Month", location: "Global", time: "All Day", type: "health", description: "Support the Red Cross and blood donation initiatives throughout March." },
+        { day: 1, title: "National Women's History Month", location: "Global", time: "All Day", type: "culture", description: "Celebrate women's contributions to history, society, and culture." },
+        { day: 1, title: "National Nutrition Month", location: "Global", time: "All Day", type: "health", description: "Promote healthy eating habits and nutrition awareness. Great for custom lunch bags!" },
         { day: 3, title: "World Wildlife Day", location: "Global", time: "All Day", type: "environment", description: "Biodiversity, conservation, and wildlife protection messages." },
-        { day: 8, title: "Intl Women's Day", location: "Community Center", time: "2:00 PM", type: "community", description: "Celebrate women leaders, history, and current work." },
-        { day: 22, title: "World Water Day", location: "Global", time: "All Day", type: "environment", description: "Clean water access, climate impacts, and infrastructure." },
-        { day: 27, title: "Earth Hour", location: "Global", time: "8:30 PM", type: "environment", description: "Lights-off symbolic action and environmental education." }
+        { day: 4, title: "Employee Appreciation Day", location: "Workplaces", time: "All Day", type: "business", description: "Show gratitude to employees for their hard work and dedication." },
+        { day: 6, title: "Dentist's Day", location: "Dental Offices", time: "All Day", type: "health", description: "Appreciate dental professionals and promote oral health awareness." },
+        { day: 7, title: "Patient Safety Awareness Week Begins", location: "Hospitals", time: "All Day", type: "health", description: "March 7-13: Promoting patient safety in healthcare settings." },
+        { day: 8, title: "International Women's Day", location: "Community Center", time: "2:00 PM", type: "community", description: "Celebrate women leaders, achievements, and gender equality." },
+        { day: 9, title: "Registered Dietitian Nutritionist Day", location: "Global", time: "All Day", type: "health", description: "Honor nutrition professionals who help people live healthier lives." },
+        { day: 12, title: "National Girl Scout Day", location: "Community", time: "All Day", type: "youth", description: "Celebrate Girl Scouts and their contributions to communities." },
+        { day: 14, title: "Pi Day", location: "Schools", time: "All Day", type: "education", description: "Celebrate mathematics and the magical number 3.14159..." },
+        { day: 16, title: "Mardi Gras", location: "Global", time: "All Day", type: "culture", description: "Fat Tuesday celebration with parades, music, and festivities!" },
+        { day: 17, title: "St. Patrick's Day", location: "Global", time: "All Day", type: "culture", description: "Celebrate Irish heritage with green, shamrocks, and community events!" },
+        { day: 19, title: "Certified Nurses Day", location: "Hospitals & Clinics", time: "All Day", type: "health", description: "Honor certified nurses and their commitment to excellence in patient care." },
+        { day: 20, title: "National Poison Prevention Week Begins", location: "Global", time: "All Day", type: "health", description: "March 20-26: Educate about poison prevention and safety." },
+        { day: 21, title: "World Down Syndrome Day", location: "Global", time: "All Day", type: "community", description: "Raise awareness and celebrate people with Down syndrome." },
+        { day: 24, title: "World Tuberculosis Day", location: "Global", time: "All Day", type: "health", description: "Raise awareness about TB prevention and treatment worldwide." },
+        { day: 26, title: "Earth Hour", location: "Global", time: "8:30 PM", type: "environment", description: "Lights-off symbolic action for climate and environmental awareness." },
+        { day: 30, title: "Doctor's Day", location: "Hospitals & Clinics", time: "All Day", type: "health", description: "Honor physicians and their dedication to patient care and healing." }
     ],
     // April 2026
+    // Theme: Humor & Earth Awareness
     3: [
-        { day: 1, title: "Earth & Volunteerism", location: "Global", time: "All Day", type: "environment", description: "Blend Earth Month, stress awareness, and volunteer appreciation." },
-        { day: 2, title: "Autism Awareness Day", location: "Global", time: "All Day", type: "health", description: "Autism acceptance, support, and neurodiversity education." },
-        { day: 7, title: "World Health Day", location: "Global", time: "All Day", type: "health", description: "Global health challenges and local resource promotion." },
-        { day: 22, title: "Earth Day", location: "Community Garden", time: "10:00 AM", type: "environment", description: "Cleanups, climate awareness, and sustainability actions." },
-        { day: 23, title: "World Book Day", location: "Local Library", time: "All Day", type: "education", description: "Reading drives, book lists, and literacy partners." }
+        { day: 1, title: "April Fool's Day", location: "Global", time: "All Day", type: "culture", description: "Celebrate with wacky custom stress balls or fun outdoor items." },
+        { day: 2, title: "Autism Awareness Day", location: "Global", time: "All Day", type: "health", description: "Raising awareness and support for the autism community." },
+        { day: 3, title: "National Public Health Week Begins", location: "Global", time: "All Day", type: "health", description: "Apr 3-9: Recognizing contributions of public health and highlighting issues." },
+        { day: 3, title: "National Library Week Begins", location: "Libraries", time: "All Day", type: "education", description: "Apr 3-9: Celebrating libraries, librarians and the freedom to read." },
+        { day: 7, title: "World Health Day", location: "Global", time: "All Day", type: "health", description: "Focusing on global health challenges and universal health coverage." },
+        { day: 10, title: "Public Safety Telecommunicators Week", location: "Global", time: "All Day", type: "community", description: "Apr 10-16: Honoring public safety telecommunicators." },
+        { day: 15, title: "ASL Day", location: "Global", time: "All Day", type: "culture", description: "American Sign Language Day - celebrating deaf quality of life." },
+        { day: 17, title: "National Volunteer Week Begins", location: "Global", time: "All Day", type: "community", description: "Apr 17-23: Celebrating the impact of volunteer service." },
+        { day: 18, title: "Environmental Education Week Begins", location: "Schools", time: "All Day", type: "environment", description: "Apr 18-22: Promoting environmental literacy." },
+        { day: 19, title: "Bicycle Day", location: "Outdoors", time: "All Day", type: "health", description: "Celebrate cycling for health and sustainability." },
+        { day: 22, title: "Earth Day", location: "Global", time: "All Day", type: "environment", description: "Excellent time for eco-friendly items and reusable grocery bags." },
+        { day: 23, title: "Picnic Day", location: "Parks", time: "12:00 PM", type: "family", description: "Enjoy the outdoors with a community picnic." },
+        { day: 24, title: "Administrative Professionals Week Begins", location: "Workplaces", time: "All Day", type: "business", description: "Apr 24-30: Recognizing the work of secretaries and admin assistants." },
+        { day: 27, title: "Administrative Professionals Day", location: "Workplaces", time: "All Day", type: "business", description: "Show appreciation for administrative staff." },
+        { day: 28, title: "Teach Children to Save Day", location: "Schools", time: "All Day", type: "education", description: "Instilling savings habits in young people." },
+        { day: 29, title: "National Arbor Day", location: "Outdoors", time: "All Day", type: "environment", description: "Plant trees and care for our woodlands." }
     ],
     // May 2026
     4: [
@@ -142,21 +170,23 @@ export const MONTHLY_THEMES = {
     },
     2: {
         name: "Nutrition & Social Work",
+        summary: "St. Patrick's Day is popular, but March also celebrates National Nutrition Month, Women's History, and healthcare heroes!",
         gradient: "from-emerald-900 via-green-800 to-teal-900",
         accent: "bg-emerald-100 text-emerald-800 border-emerald-200",
         highlight: "bg-emerald-50/80",
-        brief: "Celebrate women's achievements and promote nutrition awareness alongside social work appreciation.",
-        full: "March celebrates Women's History Month and National Nutrition Month together. It's a perfect time to honor the women who have shaped our communities while promoting healthy eating habits. Social Work Month also highlights the vital work of social service professionals in our communities.",
-        monthlyObservances: ["Women's History Month", "National Nutrition Month", "Social Work Month"]
+        brief: "Celebrate women's achievements, promote nutrition awareness, and honor social workers and healthcare professionals.",
+        full: "St. Patrick's Day is popular, but it isn't the only holiday in March. March is National Nutrition Month, and a great occasion for custom lunch bags. We have a number of healthcare, dentist, and nurse gifts to observe the many health focused holidays as well.",
+        monthlyObservances: ["American Red Cross Month", "National Women's History Month", "National Social Work Month", "National Ethics Awareness Month", "National Nutrition Month"]
     },
     3: {
-        name: "Earth & Volunteerism",
-        gradient: "from-green-900 via-lime-800 to-emerald-950",
+        name: "Humor & Earth Awareness",
+        summary: "April starts with fun for April Fool's Day and focuses on our planet with Earth Day. It's also a time for stress awareness and volunteering.",
+        gradient: "from-lime-900 via-green-800 to-emerald-900",
         accent: "bg-lime-100 text-lime-800 border-lime-200",
         highlight: "bg-lime-50/80",
-        brief: "Embrace Earth Month with environmental action and celebrate the spirit of volunteerism.",
-        full: "April is Earth Month! Join community cleanups, tree plantings, and environmental education events. National Volunteer Week celebrates those who give their time to make our communities better. Stress Awareness Month reminds us to take care of our mental health too.",
-        monthlyObservances: ["Earth Month", "National Volunteer Month", "Stress Awareness Month", "Autism Acceptance Month"]
+        brief: "Celebrate April Fool's, Earth Month, and volunteerism with humor and eco-friendly actions.",
+        full: "April's calendar of monthly events starts with April Fool's Day. Celebrate with wacky custom stress balls or an item from our popular fun and outdoors section. Earth Day is an excellent time for eco-friendly items and custom reusable grocery bags. Our variety of spirited imprinted promotional products are perfect for your recipients.",
+        monthlyObservances: ["Garden Month", "Alcohol Awareness Month", "National Parkinson's Awareness Month", "911 Education Month", "Distracted Driving Awareness Month", "Month of the Military Child", "Stress Awareness Month", "National Financial Literacy Month", "National Occupational Therapy Month", "Cancer Control Month", "Sexual Assault Awareness Month", "Campus Pride Month", "Animal Cruelty Prevention Month", "National Humor Month"]
     },
     4: {
         name: "Mental Health & Fitness",
