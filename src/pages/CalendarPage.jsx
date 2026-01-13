@@ -249,15 +249,15 @@ const CalendarPage = ({ openGetInvolved }) => {
                         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
                     }} />
                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 relative z-10">
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3 md:gap-4">
                             <motion.div
-                                className="p-3 bg-white/15 rounded-xl backdrop-blur-sm border border-white/20 shadow-lg"
+                                className="p-2 md:p-3 bg-white/15 rounded-lg md:rounded-xl backdrop-blur-sm border border-white/20 shadow-lg flex-shrink-0"
                                 whileHover={{ scale: 1.05, rotate: 5 }}
                                 transition={{ type: 'spring', stiffness: 300 }}
                             >
                                 {(() => {
                                     const MonthIcon = MONTH_ICONS[currentDate.getMonth()] || HeartHandshake;
-                                    return <MonthIcon size={28} className="text-white drop-shadow-lg" strokeWidth={1.5} />;
+                                    return <MonthIcon className="w-6 h-6 md:w-7 md:h-7 text-white drop-shadow-lg" strokeWidth={1.5} />;
                                 })()}
                             </motion.div>
                             <div>
@@ -460,18 +460,18 @@ const CalendarPage = ({ openGetInvolved }) => {
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.99 }}
                 >
-                    <div className="flex items-center gap-3">
-                        <span className={`p-2 rounded-lg bg-gradient-to-br ${currentTheme?.gradient}`}>
+                    <div className="flex items-center gap-2 md:gap-3">
+                        <span className={`p-1.5 md:p-2 rounded-lg bg-gradient-to-br ${currentTheme?.gradient} flex-shrink-0`}>
                             {(() => {
                                 const MonthIcon = MONTH_ICONS[currentDate.getMonth()] || HeartHandshake;
-                                return <MonthIcon className="w-5 h-5 text-white" strokeWidth={1.5} />;
+                                return <MonthIcon className="w-4 h-4 md:w-5 md:h-5 text-white" strokeWidth={1.5} />;
                             })()}
                         </span>
                         <div className="text-left">
-                            <h3 className="text-xl font-bold text-green-900">
+                            <h3 className="text-base md:text-xl font-bold text-green-900">
                                 {monthName} Events Timeline
                             </h3>
-                            <p className="text-sm text-green-600">
+                            <p className="text-xs md:text-sm text-green-600">
                                 {hasEvents ? `${monthlyEventsList.length} events this month` : 'No events scheduled'}
                             </p>
                         </div>
