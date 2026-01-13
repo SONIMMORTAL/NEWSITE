@@ -32,12 +32,23 @@ export const CALENDAR_DATA_2026 = {
         { day: 26, title: "Kwanzaa Begins", location: "Global", time: "All Day", type: "culture", description: "Celebrate Kwanzaa principles and cultural heritage." }
     ],
     // January 2026
+    // Month-long: Walk Your Pet Month, Career & Technical Education Month, National Blood Donor Month,
+    // Cervical Cancer Awareness Month, National Eye Care Month, National Oatmeal Month, Be Kind To Food Servers Month
     0: [
-        { day: 1, title: "Fresh Start Campaign", location: "Global", time: "All Day", type: "health", description: "New year focus on physical health, mental wellness, and planning." },
-        { day: 1, title: "New Year's Day", location: "Global", time: "All Day", type: "culture", description: "New year message, vision setting, and announcements." },
-        { day: 17, title: "World Religion Day", location: "Global", time: "All Day", type: "culture", description: "Interfaith understanding, respect, and dialogue." },
-        { day: 18, title: "MLK Day of Service", location: "Community Center", time: "10:00 AM", type: "community", description: "Service projects inspired by MLK's legacy." },
-        { day: 28, title: "Data Privacy Day", location: "Online", time: "All Day", type: "business", description: "Digital privacy tips, cybersecurity hygiene, and policy education." }
+        { day: 1, title: "New Year's Day", location: "Global", time: "All Day", type: "culture", description: "Traditional New Year's celebration. Ring in 2026 with vision setting and community announcements." },
+        { day: 1, title: "Walk Your Pet Month Kickoff", location: "Local Parks", time: "All Day", type: "health", description: "Month-long celebration encouraging pet owners to get active with their furry companions." },
+        { day: 1, title: "National Blood Donor Month", location: "Global", time: "All Day", type: "health", description: "Give the gift of life. Blood donation drives and awareness throughout January." },
+        { day: 1, title: "Cervical Cancer Awareness Month", location: "Global", time: "All Day", type: "health", description: "Education on prevention, screening, and early detection of cervical cancer." },
+        { day: 1, title: "National Eye Care Month", location: "Global", time: "All Day", type: "health", description: "Focus on vision health, eye exams, and preventive care awareness." },
+        { day: 1, title: "Career & Technical Education Month", location: "Global", time: "All Day", type: "education", description: "Highlighting vocational training, trade skills, and career pathways." },
+        { day: 2, title: "Thank Your Customers Week Begins", location: "Local Businesses", time: "All Day", type: "business", description: "January 2nd-8th: Show appreciation to your loyal customers with special promotions and gratitude." },
+        { day: 3, title: "Drinking Straw Day", location: "Global", time: "All Day", type: "culture", description: "Celebrate with eco-friendly straws and fun novelty items!" },
+        { day: 13, title: "Rubber Duckie Day", location: "Global", time: "All Day", type: "culture", description: "Celebrate the beloved rubber duck! Perfect for bath time fun and novelty gifts." },
+        { day: 16, title: "Hunt for Happiness Week Begins", location: "Global", time: "All Day", type: "community", description: "January 16th-22nd: A week dedicated to finding joy and spreading positivity in your community." },
+        { day: 19, title: "Martin Luther King Jr. Day", location: "Community Center", time: "10:00 AM", type: "community", description: "Honor Dr. King's legacy with service projects and community engagement. A day on, not a day off!" },
+        { day: 25, title: "Intravenous Nurse Day", location: "Hospitals & Clinics", time: "All Day", type: "health", description: "Recognize and appreciate IV nurses for their specialized skills and compassionate care." },
+        { day: 28, title: "Activity Professionals Day", location: "Senior Centers", time: "All Day", type: "community", description: "Celebrate professionals who enrich the lives of seniors and those in care facilities through activities." },
+        { day: 29, title: "Puzzle Day", location: "Global", time: "All Day", type: "culture", description: "Exercise your brain! Celebrate with puzzles, brain teasers, and family game time." }
     ],
     // February 2026
     1: [
@@ -98,18 +109,115 @@ export const CALENDAR_DATA_2026 = {
 };
 
 export const MONTHLY_THEMES = {
-    0: { name: "New Year, New Beginnings", gradient: "from-blue-900 via-sky-800 to-indigo-900", accent: "bg-blue-100 text-blue-800 border-blue-200", highlight: "bg-blue-50/80" },
-    1: { name: "Heart Health & Black History", gradient: "from-red-950 via-red-800 to-orange-900", accent: "bg-red-100 text-red-800 border-red-200", highlight: "bg-red-50/80" },
-    2: { name: "Nutrition & Social Work", gradient: "from-emerald-900 via-green-800 to-teal-900", accent: "bg-emerald-100 text-emerald-800 border-emerald-200", highlight: "bg-emerald-50/80" },
-    3: { name: "Earth & Volunteerism", gradient: "from-green-900 via-lime-800 to-emerald-950", accent: "bg-lime-100 text-lime-800 border-lime-200", highlight: "bg-lime-50/80" },
-    4: { name: "Mental Health & Fitness", gradient: "from-teal-900 via-cyan-800 to-blue-950", accent: "bg-cyan-100 text-cyan-800 border-cyan-200", highlight: "bg-cyan-50/80" },
-    5: { name: "Safety & Outdoors", gradient: "from-orange-800 via-amber-700 to-yellow-900", accent: "bg-orange-100 text-orange-800 border-orange-200", highlight: "bg-orange-50/80" },
-    6: { name: "Social Wellness & Family", gradient: "from-indigo-900 via-violet-800 to-purple-900", accent: "bg-indigo-100 text-indigo-800 border-indigo-200", highlight: "bg-indigo-50/80" },
-    7: { name: "Back to School & Immunization", gradient: "from-yellow-800 via-amber-700 to-orange-900", accent: "bg-yellow-100 text-yellow-800 border-yellow-200", highlight: "bg-yellow-50/80" },
-    8: { name: "Recovery & Preparedness", gradient: "from-slate-900 via-zinc-800 to-neutral-900", accent: "bg-slate-100 text-slate-800 border-slate-200", highlight: "bg-slate-50/80" },
-    9: { name: "Breast Cancer Awareness", gradient: "from-pink-900 via-rose-800 to-fuchsia-900", accent: "bg-pink-100 text-pink-800 border-pink-200", highlight: "bg-pink-50/80" },
-    10: { name: "Diabetes & Gratitude", gradient: "from-purple-900 via-fuchsia-900 to-indigo-950", accent: "bg-purple-100 text-purple-800 border-purple-200", highlight: "bg-purple-50/80" },
-    11: { name: "Giving & Human Rights", gradient: "from-red-900 via-green-900 to-slate-900", accent: "bg-red-100 text-red-800 border-red-200", highlight: "bg-red-50/80" }
+    0: {
+        name: "New Year, New Beginnings",
+        summary: "January supports several causes from wellness to appreciation. Celebrate Walk Your Pet Month, Be Kind To Food Servers Month, and more!",
+        gradient: "from-blue-900 via-sky-800 to-indigo-900",
+        accent: "bg-blue-100 text-blue-800 border-blue-200",
+        highlight: "bg-blue-50/80",
+        brief: "Celebrate new beginnings with community causes, wellness initiatives, and appreciation events.",
+        full: "Along with the traditional New Year's celebration, January's calendar of national days and events supports several causes. Give tribute to a day that is significant to your organization or company with custom corporate gifts that highlight your brand. Be Kind To Food Servers Month is also a perfect time for kitchen promotional products and personalized dog toys are great for Walk Your Pet Month. Celebrate the variety of awareness events in January!",
+        monthlyObservances: ["Walk Your Pet Month", "Career & Technical Education Month", "National Blood Donor Month", "Cervical Cancer Awareness Month", "National Eye Care Month", "National Oatmeal Month", "Be Kind To Food Servers Month"]
+    },
+    1: {
+        name: "Heart Health & Black History",
+        gradient: "from-red-950 via-red-800 to-orange-900",
+        accent: "bg-red-100 text-red-800 border-red-200",
+        highlight: "bg-red-50/80",
+        brief: "Honor Black History Month while raising awareness for heart health and cancer prevention.",
+        full: "February brings together two powerful themes: celebrating Black History Month and American Heart Month. It's a time to reflect on the contributions of African Americans throughout history while promoting cardiovascular health awareness. World Cancer Day and Rare Disease Day also remind us to support those fighting health battles.",
+        monthlyObservances: ["Black History Month", "American Heart Month", "National Cancer Prevention Month"]
+    },
+    2: {
+        name: "Nutrition & Social Work",
+        gradient: "from-emerald-900 via-green-800 to-teal-900",
+        accent: "bg-emerald-100 text-emerald-800 border-emerald-200",
+        highlight: "bg-emerald-50/80",
+        brief: "Celebrate women's achievements and promote nutrition awareness alongside social work appreciation.",
+        full: "March celebrates Women's History Month and National Nutrition Month together. It's a perfect time to honor the women who have shaped our communities while promoting healthy eating habits. Social Work Month also highlights the vital work of social service professionals in our communities.",
+        monthlyObservances: ["Women's History Month", "National Nutrition Month", "Social Work Month"]
+    },
+    3: {
+        name: "Earth & Volunteerism",
+        gradient: "from-green-900 via-lime-800 to-emerald-950",
+        accent: "bg-lime-100 text-lime-800 border-lime-200",
+        highlight: "bg-lime-50/80",
+        brief: "Embrace Earth Month with environmental action and celebrate the spirit of volunteerism.",
+        full: "April is Earth Month! Join community cleanups, tree plantings, and environmental education events. National Volunteer Week celebrates those who give their time to make our communities better. Stress Awareness Month reminds us to take care of our mental health too.",
+        monthlyObservances: ["Earth Month", "National Volunteer Month", "Stress Awareness Month", "Autism Acceptance Month"]
+    },
+    4: {
+        name: "Mental Health & Fitness",
+        gradient: "from-teal-900 via-cyan-800 to-blue-950",
+        accent: "bg-cyan-100 text-cyan-800 border-cyan-200",
+        highlight: "bg-cyan-50/80",
+        brief: "May spotlights mental health awareness while celebrating physical fitness and nurses.",
+        full: "May is Mental Health Awareness Month, a crucial time to reduce stigma and promote wellness. National Nurses Week honors healthcare heroes, while National Physical Fitness and Sports Month encourages active living. It's also Older Americans Month, celebrating our seniors.",
+        monthlyObservances: ["Mental Health Awareness Month", "National Physical Fitness Month", "Older Americans Month"]
+    },
+    5: {
+        name: "Safety & Outdoors",
+        gradient: "from-orange-800 via-amber-700 to-yellow-900",
+        accent: "bg-orange-100 text-orange-800 border-orange-200",
+        highlight: "bg-orange-50/80",
+        brief: "Celebrate Pride Month and enjoy the great outdoors while promoting safety awareness.",
+        full: "June kicks off summer with Pride Month celebrations honoring LGBTQ+ communities. National Safety Month promotes accident prevention, while Great Outdoors Month encourages families to explore nature. Men's Health Month focuses on wellness for fathers and sons.",
+        monthlyObservances: ["Pride Month", "National Safety Month", "Great Outdoors Month", "Men's Health Month"]
+    },
+    6: {
+        name: "Social Wellness & Family",
+        gradient: "from-indigo-900 via-violet-800 to-purple-900",
+        accent: "bg-indigo-100 text-indigo-800 border-indigo-200",
+        highlight: "bg-indigo-50/80",
+        brief: "July celebrates family connections, picnics, and summer gatherings.",
+        full: "July is the perfect month for family reunions, community picnics, and celebrating our independence. It's National Picnic Month, encouraging outdoor gatherings and community bond-building. Focus on social wellness and creating lasting memories with loved ones.",
+        monthlyObservances: ["National Picnic Month", "Cell Phone Courtesy Month", "Juvenile Arthritis Awareness Month"]
+    },
+    7: {
+        name: "Back to School & Immunization",
+        gradient: "from-yellow-800 via-amber-700 to-orange-900",
+        accent: "bg-yellow-100 text-yellow-800 border-yellow-200",
+        highlight: "bg-yellow-50/80",
+        brief: "Prepare for the new school year with immunizations, supplies, and youth empowerment.",
+        full: "August is all about getting ready for school! National Immunization Awareness Month reminds parents to keep vaccines up to date. Back-to-school drives provide supplies for students in need. International Youth Day celebrates young leaders and their potential.",
+        monthlyObservances: ["National Immunization Awareness Month", "Back to School Month", "National Breastfeeding Month"]
+    },
+    8: {
+        name: "Recovery & Preparedness",
+        gradient: "from-slate-900 via-zinc-800 to-neutral-900",
+        accent: "bg-slate-100 text-slate-800 border-slate-200",
+        highlight: "bg-slate-50/80",
+        brief: "Focus on recovery support and emergency preparedness as the seasons change.",
+        full: "September marks National Recovery Month, supporting those overcoming addiction. National Preparedness Month encourages emergency planning. It's also Suicide Prevention Month, promoting mental health resources and hope.",
+        monthlyObservances: ["National Recovery Month", "National Preparedness Month", "Suicide Prevention Month"]
+    },
+    9: {
+        name: "Breast Cancer Awareness",
+        gradient: "from-pink-900 via-rose-800 to-fuchsia-900",
+        accent: "bg-pink-100 text-pink-800 border-pink-200",
+        highlight: "bg-pink-50/80",
+        brief: "October turns pink for breast cancer awareness while celebrating health professionals.",
+        full: "October is Breast Cancer Awareness Month, with pink ribbons everywhere promoting early detection and research. Domestic Violence Awareness Month supports survivors. National Bullying Prevention Month protects our youth. It's a month of advocacy and support.",
+        monthlyObservances: ["Breast Cancer Awareness Month", "Domestic Violence Awareness Month", "National Bullying Prevention Month"]
+    },
+    10: {
+        name: "Diabetes & Gratitude",
+        gradient: "from-purple-900 via-fuchsia-900 to-indigo-950",
+        accent: "bg-purple-100 text-purple-800 border-purple-200",
+        highlight: "bg-purple-50/80",
+        brief: "November brings diabetes awareness alongside gratitude and family caregiver appreciation.",
+        full: "November is National Diabetes Month, promoting awareness and prevention. National Family Caregivers Month honors those who care for loved ones. As Thanksgiving approaches, it's a time for gratitude and giving back to our communities.",
+        monthlyObservances: ["National Diabetes Month", "National Family Caregivers Month", "Lung Cancer Awareness Month"]
+    },
+    11: {
+        name: "Giving & Human Rights",
+        gradient: "from-red-900 via-green-900 to-slate-900",
+        accent: "bg-red-100 text-red-800 border-red-200",
+        highlight: "bg-red-50/80",
+        brief: "Close the year with holiday giving, human rights advocacy, and community reflection.",
+        full: "December wraps up the year with holiday celebrations and giving. World AIDS Day on December 1st raises awareness for HIV/AIDS. Human Rights Day honors the Universal Declaration of Human Rights. It's a season of generosity, reflection, and hope for the new year.",
+        monthlyObservances: ["Universal Human Rights Month", "Safe Toys and Gifts Month", "National Impaired Driving Prevention Month"]
+    }
 };
 
 export const PANTRY_LOCATIONS = [

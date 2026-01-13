@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Sparkles, CalendarPlus, ChevronLeft, ChevronRight, Smile, Clock, Trash2, Plus, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Sparkles, CalendarPlus, ChevronLeft, ChevronRight, ChevronDown, Smile, Clock, Trash2, Plus, X, Heart, Info } from 'lucide-react';
 import SectionHeader from '../components/ui/SectionHeader';
 import SpiralBinding from '../components/ui/SpiralBinding';
 import CalendarEvent from '../components/features/CalendarEvent';
+import CalendarDayCell from '../components/features/CalendarDayCell';
 import { MONTHLY_THEMES, CALENDAR_DATA_2026 } from '../data';
 
 const generateInitialEvents = () => {
@@ -36,6 +38,7 @@ const CalendarPage = ({ openGetInvolved }) => {
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const monthName = monthNames[currentDate.getMonth()];
     const year = currentDate.getFullYear();
+    const currentTheme = MONTHLY_THEMES[currentDate.getMonth()];
 
     const getDaysInMonth = (date) => new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
     const getFirstDayOfMonth = (date) => new Date(date.getFullYear(), date.getMonth(), 1).getDay();
@@ -43,6 +46,9 @@ const CalendarPage = ({ openGetInvolved }) => {
     const [events, setEvents] = useState(generateInitialEvents());
     const [selectedDate, setSelectedDate] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [showAddForm, setShowAddForm] = useState(false);
+    const [showFullDescription, setShowFullDescription] = useState(false);
+    const [showTimeline, setShowTimeline] = useState(true);
     const [newEventTitle, setNewEventTitle] = useState("");
     const [newEventTime, setNewEventTime] = useState("");
     const [newEventType, setNewEventType] = useState("community");
@@ -84,19 +90,29 @@ const CalendarPage = ({ openGetInvolved }) => {
         const dateKey = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         setSelectedDate(dateKey);
         setShowModal(true);
+        setShowAddForm(false); // Start with events view, not add form
         setNewEventTitle("");
         setNewEventTime("");
         setNewEventType("community");
     };
 
+    const handleShowAddForm = () => {
+        setShowAddForm(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setShowAddForm(false);
+    };
+
     const handleAddEvent = () => {
         if (!newEventTitle) return;
-        const newEvent = { title: newEventTitle, time: newEventTime || "All Day", type: newEventType, location: "TBD" };
+        const newEvent = { title: newEventTitle, time: newEventTime || "All Day", type: newEventType, location: "TBD", description: "Community submitted event." };
         setEvents(prev => ({
             ...prev,
             [selectedDate]: [...(prev[selectedDate] || []), newEvent]
         }));
-        setShowModal(false);
+        setShowAddForm(false); // Go back to events view after adding
     };
 
     const handleDeleteEvent = (dateKey, index) => {
@@ -121,74 +137,39 @@ const CalendarPage = ({ openGetInvolved }) => {
     const monthlyEventsList = getMonthlyEvents();
     const hasEvents = monthlyEventsList.length > 0;
 
+    // Count total events for this month
+    const totalMonthEvents = monthlyEventsList.length;
+
     const renderCalendarGrid = () => {
         const totalDays = getDaysInMonth(currentDate);
         const startDay = getFirstDayOfMonth(currentDate);
         const days = [];
-        const currentTheme = MONTHLY_THEMES[currentDate.getMonth()];
 
         for (let i = 0; i < startDay; i++) {
-            days.push(<div key={`empty-${i}`} className="aspect-square md:aspect-auto md:h-36 bg-amber-50/30 border border-amber-100"></div>);
+            days.push(
+                <div
+                    key={`empty-${i}`}
+                    className="aspect-square md:aspect-auto md:h-36 bg-amber-50/30 border border-amber-100 rounded-lg"
+                />
+            );
         }
 
         for (let day = 1; day <= totalDays; day++) {
             const dateKey = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             const dayEvents = events[dateKey] || [];
             const isToday = new Date().toDateString() === new Date(currentDate.getFullYear(), currentDate.getMonth(), day).toDateString();
-            const hasEvents = dayEvents.length > 0;
 
             days.push(
-                <div
+                <CalendarDayCell
                     key={day}
+                    day={day}
+                    events={dayEvents}
+                    isToday={isToday}
+                    currentDate={currentDate}
+                    monthName={monthName}
+                    onAddEvent={() => handleDayClick(day)}
                     onClick={() => handleDayClick(day)}
-                    className={`
-                        aspect-square md:aspect-auto md:h-36 border p-1.5 md:p-2 relative transition-all cursor-pointer group flex flex-col
-                        ${isToday ? 'bg-yellow-100/80 border-yellow-400 shadow-md ring-1 ring-yellow-300' : ''}
-                        ${hasEvents ? `bg-green-50/60 border-green-300/70 hover:shadow-lg hover:-translate-y-0.5` : 'bg-amber-50/50 border-amber-100 hover:bg-white/60'}
-                    `}
-                >
-                    <div className="flex justify-between items-start mb-1">
-                        <span className={`text-xs md:text-sm font-bold w-6 h-6 md:w-7 md:h-7 flex items-center justify-center rounded-full ${isToday ? 'bg-red-500 text-white shadow-md' : hasEvents ? 'bg-green-600 text-white shadow-sm' : 'text-amber-800/70'}`} style={{ fontFamily: 'Georgia, serif' }}>
-                            {day}
-                        </span>
-                        {hasEvents && (
-                            <div className="hidden group-hover:block animate-in fade-in zoom-in">
-                                <Plus size={14} className="text-green-600 bg-white rounded-full shadow-sm" />
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="space-y-1.5 overflow-y-auto custom-scrollbar flex-1 relative z-10">
-                        {/* Mobile Indicator (Dots) */}
-                        <div className="flex md:hidden flex-wrap gap-1 mt-1">
-                            {dayEvents.slice(0, 4).map((evt, idx) => (
-                                <div key={idx} className={`
-                                    w-1.5 h-1.5 rounded-full
-                                    ${evt.type === 'business' ? 'bg-amber-500' :
-                                        evt.type === 'youth' ? 'bg-emerald-500' :
-                                            evt.type === 'culture' ? 'bg-purple-500' :
-                                                'bg-sky-500'}
-                                `} />
-                            ))}
-                            {dayEvents.length > 4 && <div className="w-1.5 h-1.5 rounded-full bg-slate-400" />}
-                        </div>
-
-                        {/* Desktop Pills */}
-                        <div className="hidden md:block space-y-1">
-                            {dayEvents.map((evt, idx) => (
-                                <div key={idx} className={`
-                                    text-[10px] px-2 py-1 rounded-md font-bold truncate shadow-sm border
-                                    ${evt.type === 'business' ? 'bg-amber-100 text-amber-900 border-amber-200' :
-                                        evt.type === 'youth' ? 'bg-emerald-100 text-emerald-900 border-emerald-200' :
-                                            evt.type === 'culture' ? 'bg-purple-100 text-purple-900 border-purple-200' :
-                                                'bg-sky-100 text-sky-900 border-sky-200'}
-                                `}>
-                                    {evt.title}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+                />
             );
         }
         return days;
@@ -216,6 +197,12 @@ const CalendarPage = ({ openGetInvolved }) => {
     }
     .animate-flip-down-out { animation: flipDownOut 0.4s ease-in forwards; }
     .animate-flip-down-in { animation: flipDownIn 0.5s ease-out forwards; }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.005); }
+    }
+    .animate-breathe { animation: breathe 4s ease-in-out infinite; }
   `;
 
     return (
@@ -228,30 +215,118 @@ const CalendarPage = ({ openGetInvolved }) => {
                 align="center"
             />
 
-            {/* Theme Header */}
-            <div className={`mb-8 p-1 rounded-2xl bg-gradient-to-r from-slate-100 to-white border border-white/40 shadow-sm relative overflow-hidden group`}>
-                <div className={`absolute inset-0 bg-gradient-to-r ${MONTHLY_THEMES[currentDate.getMonth()]?.gradient || "from-green-900 to-green-800"} opacity-15`} />
-                <div className="relative px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-6 z-10">
-                    <div className="flex items-center gap-4">
-                        <div className="p-3 bg-white rounded-xl shadow-sm transform group-hover:rotate-12 transition-transform">
-                            <Sparkles size={24} className="text-yellow-500" />
-                        </div>
-                        <div className="text-left">
-                            <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Monthly Theme</div>
-                            <div className="text-xl md:text-2xl font-black text-green-900 leading-none">
-                                {MONTHLY_THEMES[currentDate.getMonth()]?.name || "Community"}
+            {/* Unified Theme Header with Collapsible Description */}
+            <motion.div
+                className="mb-8 rounded-2xl overflow-hidden shadow-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+            >
+                {/* Gradient Header */}
+                <div className={`bg-gradient-to-r ${currentTheme?.gradient || "from-green-900 to-green-800"} p-6 text-white`}>
+                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <div className="flex items-center gap-4">
+                            <motion.div
+                                className="p-3 bg-white/10 rounded-xl backdrop-blur-sm"
+                                animate={{ rotate: [0, 5, -5, 0] }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                            >
+                                <Sparkles size={24} className="text-yellow-300" />
+                            </motion.div>
+                            <div>
+                                <div className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1">
+                                    {monthName} Theme
+                                </div>
+                                <h2 className="text-xl md:text-2xl font-black leading-tight">
+                                    {currentTheme?.name || "Community"}
+                                </h2>
+                                {currentTheme?.summary && (
+                                    <p className="text-sm text-white/80 mt-2 max-w-md leading-relaxed">
+                                        {currentTheme.summary}
+                                    </p>
+                                )}
                             </div>
                         </div>
-                    </div>
 
-                    <button
-                        onClick={() => openGetInvolved('host', `an event in ${monthNames[currentDate.getMonth()]}`)}
-                        className="w-full md:w-auto px-6 py-3 bg-white border-2 border-green-100 text-green-800 rounded-xl font-bold text-sm hover:bg-green-50 hover:border-green-300 transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md transform hover:-translate-y-0.5"
-                    >
-                        <CalendarPlus size={16} /> Host Your Own Event
-                    </button>
+                        <div className="flex items-center gap-3 w-full md:w-auto">
+                            {totalMonthEvents > 0 && (
+                                <div className="flex items-center gap-2 px-3 py-2 bg-white/20 rounded-full backdrop-blur-sm">
+                                    <Heart className="w-4 h-4 text-white" />
+                                    <span className="text-sm font-bold">
+                                        {totalMonthEvents} Event{totalMonthEvents !== 1 ? 's' : ''}
+                                    </span>
+                                </div>
+                            )}
+                            <button
+                                onClick={() => openGetInvolved('host', `an event in ${monthNames[currentDate.getMonth()]}`)}
+                                className="px-4 py-2 bg-white text-green-800 rounded-xl font-bold text-sm hover:bg-green-50 transition-all flex items-center gap-2 shadow-md hover:shadow-lg"
+                            >
+                                <CalendarPlus size={16} /> Host Event
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+                {/* Description Section */}
+                <div className="bg-white/95 p-5">
+                    <p className="text-slate-600 text-sm leading-relaxed mb-3">
+                        {currentTheme?.brief || "Join us for community activities this month."}
+                    </p>
+
+                    {/* Monthly Observances Pills */}
+                    {currentTheme?.monthlyObservances && (
+                        <div className="flex flex-wrap gap-2 mb-4">
+                            {currentTheme.monthlyObservances.slice(0, showFullDescription ? undefined : 4).map((observance, idx) => (
+                                <span
+                                    key={idx}
+                                    className={`text-xs px-3 py-1.5 rounded-full font-medium border ${currentTheme.accent}`}
+                                >
+                                    {observance}
+                                </span>
+                            ))}
+                            {!showFullDescription && currentTheme.monthlyObservances.length > 4 && (
+                                <span className="text-xs px-3 py-1.5 rounded-full font-medium bg-slate-100 text-slate-600 border border-slate-200">
+                                    +{currentTheme.monthlyObservances.length - 4} more
+                                </span>
+                            )}
+                        </div>
+                    )}
+
+                    {/* Read More Button */}
+                    <button
+                        onClick={() => setShowFullDescription(!showFullDescription)}
+                        className="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-700 transition-colors"
+                    >
+                        <Info size={14} />
+                        {showFullDescription ? 'Show Less' : 'Read More About This Month'}
+                        <motion.div
+                            animate={{ rotate: showFullDescription ? 180 : 0 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <ChevronDown size={16} />
+                        </motion.div>
+                    </button>
+
+                    {/* Full Description - Expandable */}
+                    <AnimatePresence>
+                        {showFullDescription && (
+                            <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                className="overflow-hidden"
+                            >
+                                <div className="pt-4 mt-4 border-t border-slate-100">
+                                    <p className="text-slate-600 text-sm leading-relaxed">
+                                        {currentTheme?.full || "Explore the many events and awareness campaigns happening this month."}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+            </motion.div>
 
             <div className="relative pt-8">
                 <SpiralBinding />
@@ -260,27 +335,49 @@ const CalendarPage = ({ openGetInvolved }) => {
                 <div className="absolute -bottom-2 left-2 right-2 h-4 bg-amber-200/40 rounded-b-xl blur-sm" />
                 <div className="absolute -bottom-1 left-1 right-1 h-2 bg-amber-100/60 rounded-b-lg" />
 
-                {/* Main Calendar Container with Paper Texture */}
-                <div
-                    className="relative rounded-lg shadow-[0_25px_60px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.3)] overflow-hidden"
+                {/* Main Calendar Container with Paper Texture - Now with Breathing Animation */}
+                <motion.div
+                    className="relative rounded-lg shadow-[0_25px_60px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.3)] overflow-hidden animate-breathe"
                     style={{ perspective: '2000px', transformStyle: 'preserve-3d' }}
                 >
                     {/* Month Header with Theme Gradient */}
-                    <div className={`bg-gradient-to-br ${MONTHLY_THEMES[currentDate.getMonth()]?.gradient || "from-green-900 to-green-800"} transition-all duration-700`}>
+                    <motion.div
+                        className={`bg-gradient-to-br ${currentTheme?.gradient || "from-green-900 to-green-800"} transition-all duration-700`}
+                        key={currentDate.getMonth()}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                    >
                         <div className="flex items-center justify-between p-4 md:p-6 border-b border-white/10 z-20 relative text-white">
-                            <button onClick={handlePrevMonth} className="p-2 md:p-3 hover:bg-white/10 rounded-full transition-colors active:scale-95">
+                            <motion.button
+                                onClick={handlePrevMonth}
+                                className="p-2 md:p-3 hover:bg-white/10 rounded-full transition-colors"
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
                                 <ChevronLeft size={24} />
-                            </button>
+                            </motion.button>
                             <div className="text-center">
-                                <h2 className="text-2xl md:text-3xl font-bold transition-all duration-300 drop-shadow-lg tracking-wide">
-                                    {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
-                                </h2>
+                                <motion.h2
+                                    className="text-2xl md:text-3xl font-bold drop-shadow-lg tracking-wide"
+                                    key={`${monthName}-${year}`}
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    {monthName} {year}
+                                </motion.h2>
                             </div>
-                            <button onClick={handleNextMonth} className="p-2 md:p-3 hover:bg-white/10 rounded-full transition-colors active:scale-95">
+                            <motion.button
+                                onClick={handleNextMonth}
+                                className="p-2 md:p-3 hover:bg-white/10 rounded-full transition-colors"
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
                                 <ChevronRight size={24} />
-                            </button>
+                            </motion.button>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Paper Sheet with Texture */}
                     <div
@@ -309,8 +406,8 @@ const CalendarPage = ({ openGetInvolved }) => {
                             ))}
                         </div>
 
-                        {/* Calendar Grid with Paper Feel */}
-                        <div className="relative grid grid-cols-7 bg-amber-50/40">
+                        {/* Calendar Grid with Interactive Cells */}
+                        <div className="relative grid grid-cols-7 bg-amber-50/40 gap-1 p-1">
                             {renderCalendarGrid()}
                         </div>
 
@@ -322,105 +419,320 @@ const CalendarPage = ({ openGetInvolved }) => {
                         {/* Left edge shadow for book depth */}
                         <div className="absolute left-0 top-0 bottom-0 w-3 bg-gradient-to-r from-amber-200/30 to-transparent pointer-events-none" />
                     </div>
-                </div>
+                </motion.div>
             </div>
 
-            {/* Timeline Visualization */}
-            <div className="max-w-3xl mx-auto text-left relative min-h-[200px] mt-16">
-                {hasEvents ? (
-                    <>
-                        <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-slate-200"></div>
-                        {monthlyEventsList.map((event, index) => (
-                            <CalendarEvent
-                                key={index}
-                                event={event}
-                                monthName={monthName}
-                                onHostClick={(title) => openGetInvolved('host', title)}
-                            />
-                        ))}
-                    </>
-                ) : (
-                    <div className="text-center text-slate-500 py-12">
-                        <Smile size={48} className="mx-auto mb-4 text-slate-300" />
-                        <p className="text-lg font-medium text-green-900">No activities scheduled.</p>
-                        <p className="text-sm">Please check back later or view other months!</p>
-                    </div>
-                )}
-            </div>
-
-            {/* Add/View Event Modal */}
-            {showModal && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-green-950/40 backdrop-blur-sm animate-in fade-in">
-                    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-in zoom-in-95 duration-200">
-                        <div className="bg-green-800 p-4 flex justify-between items-center text-white">
-                            <h3 className="font-bold">Events for {selectedDate}</h3>
-                            <button onClick={() => setShowModal(false)}><X size={20} /></button>
+            {/* Timeline Visualization - Collapsible Accordion */}
+            <div className="max-w-3xl mx-auto text-left relative mt-16">
+                {/* Clickable Header */}
+                <motion.button
+                    onClick={() => setShowTimeline(!showTimeline)}
+                    className="w-full flex items-center justify-between gap-3 p-4 bg-gradient-to-r from-green-50 to-emerald-50 hover:from-green-100 hover:to-emerald-100 rounded-2xl border border-green-200 shadow-sm transition-all group"
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                >
+                    <div className="flex items-center gap-3">
+                        <span className={`p-2 rounded-lg bg-gradient-to-br ${currentTheme?.gradient}`}>
+                            <Sparkles className="w-5 h-5 text-white" />
+                        </span>
+                        <div className="text-left">
+                            <h3 className="text-xl font-bold text-green-900">
+                                {monthName} Events Timeline
+                            </h3>
+                            <p className="text-sm text-green-600">
+                                {hasEvents ? `${monthlyEventsList.length} events this month` : 'No events scheduled'}
+                            </p>
                         </div>
+                    </div>
+                    <motion.div
+                        animate={{ rotate: showTimeline ? 180 : 0 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                        className="p-2 rounded-full bg-green-200/50 group-hover:bg-green-300/50 transition-colors"
+                    >
+                        <ChevronDown className="w-5 h-5 text-green-700" />
+                    </motion.div>
+                </motion.button>
 
-                        <div className="p-6">
-                            {events[selectedDate]?.length > 0 && (
-                                <div className="mb-6 space-y-2">
-                                    <h4 className="text-xs font-bold uppercase text-slate-400 mb-2">Scheduled</h4>
-                                    {events[selectedDate].map((evt, i) => (
-                                        <div key={i} className="flex justify-between items-center p-3 bg-slate-50 rounded-lg border border-slate-100 group">
-                                            <div>
-                                                <div className="font-bold text-green-900 text-sm">{evt.title}</div>
-                                                <div className="text-xs text-slate-500 flex items-center gap-1 mb-1">
-                                                    <Clock size={10} /> {evt.time}
-                                                    <span className="capitalize">• {evt.type}</span>
-                                                </div>
-                                                <div className="text-xs text-slate-400 leading-snug">{evt.description}</div>
-                                            </div>
-                                            <button
-                                                onClick={() => handleDeleteEvent(selectedDate, i)}
-                                                className="text-red-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                {/* Collapsible Content */}
+                <AnimatePresence initial={false}>
+                    {showTimeline && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{
+                                height: 'auto',
+                                opacity: 1,
+                                transition: {
+                                    height: { type: 'spring', stiffness: 300, damping: 30 },
+                                    opacity: { duration: 0.2, delay: 0.1 }
+                                }
+                            }}
+                            exit={{
+                                height: 0,
+                                opacity: 0,
+                                transition: {
+                                    height: { type: 'spring', stiffness: 300, damping: 30 },
+                                    opacity: { duration: 0.15 }
+                                }
+                            }}
+                            className="overflow-hidden"
+                        >
+                            <div className="pt-6 pb-4 relative min-h-[100px]">
+                                {hasEvents ? (
+                                    <>
+                                        <div className="absolute left-8 top-6 bottom-4 w-0.5 bg-gradient-to-b from-green-400 to-green-100"></div>
+                                        {monthlyEventsList.map((event, index) => (
+                                            <motion.div
+                                                key={index}
+                                                initial={{ opacity: 0, x: -30 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ delay: index * 0.05 }}
                                             >
-                                                <Trash2 size={16} />
+                                                <CalendarEvent
+                                                    event={event}
+                                                    monthName={monthName}
+                                                    onHostClick={(title) => openGetInvolved('host', title)}
+                                                />
+                                            </motion.div>
+                                        ))}
+                                    </>
+                                ) : (
+                                    <motion.div
+                                        className="text-center text-slate-500 py-12"
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                    >
+                                        <Smile size={48} className="mx-auto mb-4 text-slate-300" />
+                                        <p className="text-lg font-medium text-green-900">No activities scheduled.</p>
+                                        <p className="text-sm">Please check back later or view other months!</p>
+                                    </motion.div>
+                                )}
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+
+            {/* Add/View Event Modal - Cult-UI Style Expandable */}
+            <AnimatePresence mode="wait">
+                {showModal && (
+                    <motion.div
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        onClick={handleCloseModal}
+                    >
+                        {/* Backdrop with blur */}
+                        <motion.div
+                            className="absolute inset-0 bg-green-950/50 backdrop-blur-md"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                        />
+
+                        {/* Modal Card */}
+                        <motion.div
+                            className="relative bg-white rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.3)] w-full max-w-md overflow-hidden"
+                            initial={{
+                                scale: 0.85,
+                                y: 40,
+                                opacity: 0,
+                                rotateX: 10
+                            }}
+                            animate={{
+                                scale: 1,
+                                y: 0,
+                                opacity: 1,
+                                rotateX: 0
+                            }}
+                            exit={{
+                                scale: 0.9,
+                                y: 20,
+                                opacity: 0,
+                                transition: { duration: 0.15 }
+                            }}
+                            transition={{
+                                type: 'spring',
+                                stiffness: 350,
+                                damping: 30,
+                                mass: 0.8
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                            style={{ transformStyle: 'preserve-3d' }}
+                        >
+                            {/* Green Gradient Header - Premium Feel */}
+                            <motion.div
+                                className="bg-gradient-to-br from-green-700 via-green-600 to-emerald-600 p-5"
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1, duration: 0.3 }}
+                            >
+                                <div className="flex justify-between items-start">
+                                    <div className="text-white">
+                                        <motion.div
+                                            className="flex items-center gap-2 mb-1"
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.15 }}
+                                        >
+                                            <span className="text-xs font-medium text-white/70 uppercase tracking-wider">
+                                                {monthName}
+                                            </span>
+                                        </motion.div>
+                                        <motion.h3
+                                            className="text-3xl font-black tracking-tight"
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.2 }}
+                                        >
+                                            {selectedDate?.split('-')[2]}
+                                        </motion.h3>
+                                        <motion.p
+                                            className="text-white/80 text-sm mt-1"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            transition={{ delay: 0.25 }}
+                                        >
+                                            {events[selectedDate]?.length || 0} event{events[selectedDate]?.length !== 1 ? 's' : ''} scheduled
+                                        </motion.p>
+                                    </div>
+                                    <motion.button
+                                        onClick={handleCloseModal}
+                                        className="p-2 hover:bg-white/20 rounded-full transition-all"
+                                        whileHover={{ scale: 1.1, rotate: 90 }}
+                                        whileTap={{ scale: 0.9 }}
+                                    >
+                                        <X size={20} className="text-white" />
+                                    </motion.button>
+                                </div>
+                            </motion.div>
+
+                            <div className="p-6 max-h-[60vh] overflow-y-auto">
+                                {/* STEP 1: Events List View */}
+                                {!showAddForm ? (
+                                    <>
+                                        {events[selectedDate]?.length > 0 ? (
+                                            <div className="space-y-3 mb-6">
+                                                {events[selectedDate].map((evt, i) => (
+                                                    <motion.div
+                                                        key={i}
+                                                        className="flex justify-between items-start p-4 bg-slate-50 rounded-xl border border-slate-100 group"
+                                                        initial={{ opacity: 0, x: -10 }}
+                                                        animate={{ opacity: 1, x: 0 }}
+                                                        transition={{ delay: i * 0.05 }}
+                                                    >
+                                                        <div className="flex-1">
+                                                            <div className="font-bold text-green-900">{evt.title}</div>
+                                                            <div className="text-xs text-slate-500 flex items-center gap-2 mt-1">
+                                                                <Clock size={10} /> {evt.time}
+                                                                <span className="capitalize px-2 py-0.5 bg-slate-200 rounded text-slate-600">
+                                                                    {evt.type}
+                                                                </span>
+                                                            </div>
+                                                            {evt.description && (
+                                                                <div className="text-xs text-slate-400 leading-relaxed mt-2">
+                                                                    {evt.description}
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                        <button
+                                                            onClick={() => handleDeleteEvent(selectedDate, i)}
+                                                            className="text-red-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity ml-2"
+                                                        >
+                                                            <Trash2 size={16} />
+                                                        </button>
+                                                    </motion.div>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <div className="text-center py-8 mb-6">
+                                                <Smile size={48} className="mx-auto mb-3 text-slate-300" />
+                                                <p className="text-slate-500 font-medium">No events yet</p>
+                                                <p className="text-slate-400 text-sm mt-1">Be the first to add one!</p>
+                                            </div>
+                                        )}
+
+                                        {/* Add Event Button */}
+                                        <button
+                                            onClick={handleShowAddForm}
+                                            className="w-full py-3 bg-gradient-to-r from-green-700 to-emerald-600 text-white rounded-xl font-bold text-sm hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                                        >
+                                            <Plus size={16} /> Request to Host an Event
+                                        </button>
+                                    </>
+                                ) : (
+                                    /* STEP 2: Add Event Form */
+                                    <>
+                                        <div className="mb-4">
+                                            <button
+                                                onClick={() => setShowAddForm(false)}
+                                                className="text-sm text-slate-500 hover:text-slate-700 flex items-center gap-1"
+                                            >
+                                                ← Back to events
                                             </button>
                                         </div>
-                                    ))}
-                                </div>
-                            )}
 
-                            <h4 className="text-xs font-bold uppercase text-slate-400 mb-3">Add New Event</h4>
-                            <div className="space-y-3">
-                                <input
-                                    type="text"
-                                    placeholder="Event Title"
-                                    className="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-yellow-400"
-                                    value={newEventTitle}
-                                    onChange={e => setNewEventTitle(e.target.value)}
-                                />
-                                <div className="flex gap-3">
-                                    <input
-                                        type="time"
-                                        className="flex-1 p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-yellow-400"
-                                        value={newEventTime}
-                                        onChange={e => setNewEventTime(e.target.value)}
-                                    />
-                                    <select
-                                        className="flex-1 p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-yellow-400 bg-white"
-                                        value={newEventType}
-                                        onChange={e => setNewEventType(e.target.value)}
-                                    >
-                                        <option value="community">Community</option>
-                                        <option value="business">Business</option>
-                                        <option value="youth">Youth</option>
-                                        <option value="culture">Culture</option>
-                                    </select>
-                                </div>
-                                <button
-                                    onClick={handleAddEvent}
-                                    disabled={!newEventTitle}
-                                    className="w-full bg-green-700 text-white py-3 rounded-xl font-bold text-sm hover:bg-green-800 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 shadow-md"
-                                >
-                                    <Plus size={16} /> Add to Calendar
-                                </button>
+                                        <h4 className="text-lg font-bold text-green-900 mb-4">Request Event Space</h4>
+                                        <p className="text-sm text-slate-500 mb-4">
+                                            Fill out the form below to request this date for your event. Our team will review and approve.
+                                        </p>
+
+                                        <div className="space-y-4">
+                                            <div>
+                                                <label className="text-xs font-bold uppercase text-slate-400 mb-1 block">Event Title</label>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Enter your event name"
+                                                    className="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-100"
+                                                    value={newEventTitle}
+                                                    onChange={e => setNewEventTitle(e.target.value)}
+                                                />
+                                            </div>
+
+                                            <div className="flex gap-3">
+                                                <div className="flex-1">
+                                                    <label className="text-xs font-bold uppercase text-slate-400 mb-1 block">Time</label>
+                                                    <input
+                                                        type="time"
+                                                        className="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-green-400"
+                                                        value={newEventTime}
+                                                        onChange={e => setNewEventTime(e.target.value)}
+                                                    />
+                                                </div>
+                                                <div className="flex-1">
+                                                    <label className="text-xs font-bold uppercase text-slate-400 mb-1 block">Category</label>
+                                                    <select
+                                                        className="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-green-400 bg-white"
+                                                        value={newEventType}
+                                                        onChange={e => setNewEventType(e.target.value)}
+                                                    >
+                                                        <option value="community">Community</option>
+                                                        <option value="business">Business</option>
+                                                        <option value="youth">Youth</option>
+                                                        <option value="culture">Culture</option>
+                                                        <option value="health">Health</option>
+                                                        <option value="education">Education</option>
+                                                        <option value="environment">Environment</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <button
+                                                onClick={handleAddEvent}
+                                                disabled={!newEventTitle}
+                                                className="w-full bg-gradient-to-r from-green-700 to-emerald-600 text-white py-3 rounded-xl font-bold text-sm hover:shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                            >
+                                                <Plus size={16} /> Submit Request
+                                            </button>
+                                        </div>
+                                    </>
+                                )}
                             </div>
-                        </div>
-                    </div>
-                </div>
-            )}
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };
