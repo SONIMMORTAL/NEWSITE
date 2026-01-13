@@ -174,11 +174,17 @@ export const CALENDAR_DATA_2026 = {
     ],
     // August 2026
     7: [
-        { day: 1, title: "Back-to-School Campaign", location: "Global", time: "All Day", type: "family", description: "Prepare families for school return: vaccines, vision checks, supplies." },
-        { day: 10, title: "World Lion Day", location: "Global", time: "All Day", type: "environment", description: "Lion conservation and wildlife awareness content." },
-        { day: 12, title: "Intl Youth Day", location: "Kids Depo", time: "2:00 PM", type: "youth", description: "Youth leadership, education, and empowerment stories." },
-        { day: 17, title: "National Nonprofit Day", location: "Global", time: "All Day", type: "business", description: "Highlight nonprofit partners, impact stats, and supporter appreciation." },
-        { day: 19, title: "World Humanitarian Day", location: "Global", time: "All Day", type: "community", description: "Honor humanitarian workers and crisis response efforts." }
+        { day: 2, title: "Coloring Book Day", location: "Global", time: "All Day", type: "culture", description: "Relax and get creative with a coloring book." },
+        { day: 4, title: "U.S. Coast Guard Day", location: "Global", time: "All Day", type: "community", description: "Honoring the brave men and women of the Coast Guard." },
+        { day: 5, title: "International Beer Day", location: "Global", time: "All Day", type: "culture", description: "Raise a glass and celebrate the art of brewing." },
+        { day: 8, title: "International Cat Day", location: "Global", time: "All Day", type: "family", description: "Celebrating our feline friends." },
+        { day: 9, title: "Book Lovers Day", location: "Libraries", time: "All Day", type: "culture", description: "Encouraging a love for reading and literature." },
+        { day: 12, title: "International Youth Day", location: "Global", time: "All Day", type: "youth", description: "Celebrating the potential and achievements of young people." },
+        { day: 15, title: "Relaxation Day", location: "Global", time: "All Day", type: "health", description: "Take a break, slow down, and de-stress." },
+        { day: 17, title: "National Non Profit Day", location: "Global", time: "All Day", type: "community", description: "Recognizing the impact of non-profit organizations." },
+        { day: 21, title: "Senior Citizens Day", location: "Global", time: "All Day", type: "community", description: "Honoring the contributions of older adults." },
+        { day: 26, title: "Women's Equality Day", location: "Global", time: "All Day", type: "community", description: "Commemorating the passage of the 19th Amendment." },
+        { day: 26, title: "National Dog Day", location: "Global", time: "All Day", type: "family", description: "Celebrating dogs and encouraging adoption." }
     ]
 };
 
@@ -254,13 +260,14 @@ export const MONTHLY_THEMES = {
         monthlyObservances: ["Social Wellness Month", "Wedding Season", "Family Reunion Month", "UV Safety Month", "Picnic Month", "National Cell Phone Courtesy Month", "National Culinary Arts Month", "National Recreation and Parks Month", "National Grilling Month"]
     },
     7: {
-        name: "Back to School & Immunization",
-        gradient: "from-yellow-800 via-amber-700 to-orange-900",
+        name: "Awareness & Preparation",
+        summary: "From National Immunization Awareness Month to National Picnic Month, August highlights several monthly awareness topics.",
+        gradient: "from-yellow-400 via-orange-400 to-red-400",
         accent: "bg-yellow-100 text-yellow-800 border-yellow-200",
         highlight: "bg-yellow-50/80",
-        brief: "Prepare for the new school year with immunizations, supplies, and youth empowerment.",
-        full: "August is all about getting ready for school! National Immunization Awareness Month reminds parents to keep vaccines up to date. Back-to-school drives provide supplies for students in need. International Youth Day celebrates young leaders and their potential.",
-        monthlyObservances: ["National Immunization Awareness Month", "Back to School Month", "National Breastfeeding Month"]
+        brief: "Highlighting immunization, student orientation, and summer fun like picnics and golf.",
+        full: "August is a transitional month, balancing the last days of summer fun with preparation for the school year. We focus on health with Immunization Awareness and Eye Exam Month, while enjoying leisure activities like Golf, Picnics, and Fishing. It's a time to relax before the busy fall season.",
+        monthlyObservances: ["National Immunization Awareness Month", "National Picnic Month", "National Golf Month", "New Student Orientation", "National Eye Exam Month", "Fishing Month"]
     },
     8: {
         name: "Recovery & Preparedness",
