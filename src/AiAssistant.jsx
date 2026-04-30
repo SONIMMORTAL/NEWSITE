@@ -3,7 +3,7 @@ import { MessageSquare, Send, X, Sparkles, Loader2, Minimize2, Maximize2, User, 
 import AIInput from './components/ui/AIInput';
 import { CALENDAR_DATA_2026, PANTRY_LOCATIONS, SOCIAL_SERVICES, POLITICAL_INFO } from './data';
 
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY; // Securely loaded from environment variables
+// API key is securely managed on the backend
 
 const SYSTEM_PROMPT = `
 You are the Public Advocate Social Society's helpful AI Assistant.
@@ -78,15 +78,11 @@ const AiAssistant = () => {
                 }))
             ];
 
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`, {
+            // Call our secure Vercel backend instead of Google directly
+            const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: conversationHistory,
-                    tools: [
-                        { googleSearch: {} }
-                    ]
-                })
+                body: JSON.stringify({ messages: conversationHistory })
             });
 
             if (!response.ok) {

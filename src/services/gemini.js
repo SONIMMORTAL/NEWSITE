@@ -1,9 +1,9 @@
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY; // Securely loaded from environment variables
+// API key is securely managed on the backend
 
 // --- Helper: Gemini API Call ---
 export const callGemini = async (prompt) => {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-    const payload = { contents: [{ parts: [{ text: prompt }] }] };
+    const url = '/api/generate';
+    const payload = { prompt };
 
     const fetchWithRetry = async (attempt = 0) => {
         try {
