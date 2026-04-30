@@ -60,18 +60,29 @@ const AiAssistant = () => {
         if (!input.trim()) return;
 
         const userMsg = { role: 'user', text: input };
-        setMessages(prev => [...prev, userMsg]);
+        const updatedMessages = [...messages, userMsg];
+        setMessages(updatedMessages);
         setInput('');
         setIsLoading(true);
 
         try {
+            // Build full conversation history for the API
+            const conversationHistory = [
+                // System prompt as the first user turn
+                { role: "user", parts: [{ text: SYSTEM_PROMPT }] },
+                { role: "model", parts: [{ text: "Understood. I'm ready to help community members as the Public Advocate Social Society's AI Assistant." }] },
+                // Map all conversation messages to API format
+                ...updatedMessages.map(msg => ({
+                    role: msg.role === 'user' ? 'user' : 'model',
+                    parts: [{ text: msg.text }]
+                }))
+            ];
+
             const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    contents: [
-                        { role: "user", parts: [{ text: SYSTEM_PROMPT + "\n\nUser Query: " + input }] }
-                    ],
+                    contents: conversationHistory,
                     tools: [
                         { googleSearch: {} }
                     ]
@@ -79,8 +90,9 @@ const AiAssistant = () => {
             });
 
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`API Error: ${response.status} ${response.statusText} - ${errorData.error?.message || JSON.stringify(errorData)}`);
+                const errorData = await response.json().catch(() => null);
+                console.error('Gemini API Error:', response.status, errorData);
+                throw new Error('SERVICE_UNAVAILABLE');
             }
 
             const data = await response.json();
@@ -88,8 +100,8 @@ const AiAssistant = () => {
 
             setMessages(prev => [...prev, { role: 'assistant', text: reply }]);
         } catch (error) {
-            console.error(error);
-            setMessages(prev => [...prev, { role: 'assistant', text: `Connection Error: ${error.message || error.toString()} (Key: ${API_KEY ? 'Present' : 'Missing'})` }]);
+            console.error('Assistant error:', error);
+            setMessages(prev => [...prev, { role: 'assistant', text: "I'm sorry, I'm having trouble connecting right now. Please try again in a moment, or reach out to us using the Contact page." }]);
         } finally {
             setIsLoading(false);
         }

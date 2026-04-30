@@ -28,7 +28,6 @@ export const callGemini = async (prompt) => {
         return await fetchWithRetry();
     } catch (error) {
         console.error("Gemini API Error:", error);
-        const keyStatus = apiKey ? "Key Present" : "Key Missing";
-        return `I'm having trouble connecting right now (${keyStatus}). Error: ${error.message}. Please try again later.`;
+        return "I'm sorry, I'm having trouble connecting right now. Please try again in a moment.";
     }
 };
