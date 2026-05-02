@@ -31,7 +31,7 @@ export default async function handler(req, res) {
     if (!response.ok) {
       const errorData = await response.json().catch(() => null);
       console.error('Gemini API Error from server:', response.status, errorData);
-      return res.status(502).json({ error: 'Error connecting to AI service', details: errorData });
+      return res.status(502).json({ error: 'Error connecting to AI service' });
     }
 
     const data = await response.json();
