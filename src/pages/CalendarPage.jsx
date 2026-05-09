@@ -52,7 +52,7 @@ const generateInitialEvents = () => {
 };
 
 const CalendarPage = ({ openGetInvolved }) => {
-    const [currentDate, setCurrentDate] = useState(new Date(2026, 0));
+    const [currentDate, setCurrentDate] = useState(new Date());
     const [isFlipping, setIsFlipping] = useState(false);
     const [animationClass, setAnimationClass] = useState("");
 
