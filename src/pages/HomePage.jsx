@@ -174,10 +174,26 @@ const HomePage = ({ navigate }) => (
                                     </div>
                                 </div>
                                 <div className="mt-8 w-full">
-                                    <h3 className="font-bold text-2xl text-green-900 mb-1">535 Utica Ave</h3>
+                                    <a 
+                                        href="https://www.google.com/maps/dir/?api=1&destination=535+Utica+Ave,+Brooklyn,+NY"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="font-bold text-2xl text-green-900 mb-1 hover:text-green-700 hover:underline transition-colors block"
+                                    >
+                                        535 Utica Ave
+                                    </a>
                                     <p className="text-green-600 text-sm font-medium italic mb-3">Corner of Rutland & Utica</p>
                                     <div className="w-12 h-0.5 bg-green-200 my-3 mx-auto"></div>
-                                    <p className="text-green-800 font-bold">Location: <span className="text-green-900">Bullish Club</span></p>
+                                    <p className="text-green-800 font-bold">
+                                        Location: <a 
+                                            href="https://www.eventective.com/brooklyn-ny/qsc-event-space-791677.html" 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            className="text-green-900 hover:text-green-700 hover:underline transition-colors"
+                                        >
+                                            QSC Event Space
+                                        </a>
+                                    </p>
                                 </div>
                             </div>
 
