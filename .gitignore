@@ -123,3 +123,7 @@ dist
 dist
 dist-ssr
 *.local
+
+# Claude Code local state (worktrees are full repo copies; settings are per-machine)
+.claude/worktrees/
+.claude/settings.local.json

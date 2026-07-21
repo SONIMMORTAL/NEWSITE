@@ -1,98 +1,125 @@
-import React, { useState, useEffect } from 'react';
-import { Mail, X, Send } from 'lucide-react';
+import React, { useState, useEffect, useId } from 'react';
+import { Mail, Send } from 'lucide-react';
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+    DialogBody,
+} from '../ui/dialog';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
+import { Textarea } from '../ui/textarea';
+import { Select } from '../ui/select';
+import { SITE } from '../../config/site';
+
+const SUBJECTS = [
+    'Getting Involved',
+    'Business Roundtable',
+    'Kids Depo Programs',
+    'Donation Inquiry',
+    'Other',
+];
 
 const ContactModal = ({ isOpen, onClose, initialSubject = 'Getting Involved' }) => {
-    const [formData, setFormData] = useState({ name: '', email: '', subject: initialSubject, message: '' });
+    const id = useId();
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        subject: initialSubject,
+        message: '',
+    });
 
     useEffect(() => {
         if (isOpen) {
-            setFormData(prev => ({ ...prev, subject: initialSubject }));
+            setFormData((prev) => ({ ...prev, subject: initialSubject }));
         }
     }, [isOpen, initialSubject]);
 
-    if (!isOpen) return null;
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        const mailtoLink = `mailto:publicadvocatessocialsociety@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`;
-        window.location.href = mailtoLink;
+        const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`;
+        window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(
+            formData.subject
+        )}&body=${encodeURIComponent(body)}`;
         onClose();
     };
 
-    return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-green-950/60 backdrop-blur-md animate-in fade-in">
-            <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200 border border-green-100">
-                <div className="bg-green-900 p-6 flex justify-between items-center text-white relative overflow-hidden">
-                    <div className="absolute inset-0 bg-yellow-400/10" />
-                    <div className="relative z-10 flex items-center gap-3">
-                        <div className="p-2 bg-white/10 rounded-full backdrop-blur-sm">
-                            <Mail size={20} className="text-yellow-400" />
-                        </div>
-                        <div>
-                            <h3 className="font-bold text-xl">Get Involved</h3>
-                            <p className="text-green-100 text-xs">Send us a message</p>
-                        </div>
-                    </div>
-                    <button onClick={onClose} className="relative z-10 p-2 hover:bg-white/10 rounded-full transition-colors"><X size={20} /></button>
-                </div>
+    const set = (key) => (e) => setFormData((prev) => ({ ...prev, [key]: e.target.value }));
 
-                <form onSubmit={handleSubmit} className="p-8 space-y-5">
-                    <div className="space-y-4">
+    return (
+        <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+            <DialogContent>
+                <DialogHeader>
+                    <div className="rounded-full bg-white/10 p-2 backdrop-blur-sm">
+                        <Mail size={20} className="text-primary" />
+                    </div>
+                    <div>
+                        <DialogTitle>Get Involved</DialogTitle>
+                        <DialogDescription>Send us a message</DialogDescription>
+                    </div>
+                </DialogHeader>
+
+                <DialogBody>
+                    <form onSubmit={handleSubmit} className="space-y-5">
                         <div>
-                            <label className="block text-xs font-bold text-green-800 uppercase tracking-wider mb-2">Your Name</label>
-                            <input
+                            <Label htmlFor={`${id}-name`}>Your Name</Label>
+                            <Input
+                                id={`${id}-name`}
                                 required
-                                type="text"
-                                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:outline-none focus:border-yellow-400 focus:bg-white transition-all"
+                                autoComplete="name"
+                                className="bg-muted/50"
                                 value={formData.name}
-                                onChange={e => setFormData({ ...formData, name: e.target.value })}
+                                onChange={set('name')}
                             />
                         </div>
+
                         <div>
-                            <label className="block text-xs font-bold text-green-800 uppercase tracking-wider mb-2">Email Address</label>
-                            <input
-                                required
+                            <Label htmlFor={`${id}-email`}>Email Address</Label>
+                            <Input
+                                id={`${id}-email`}
                                 type="email"
-                                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:outline-none focus:border-yellow-400 focus:bg-white transition-all"
+                                required
+                                autoComplete="email"
+                                className="bg-muted/50"
                                 value={formData.email}
-                                onChange={e => setFormData({ ...formData, email: e.target.value })}
+                                onChange={set('email')}
                             />
                         </div>
+
                         <div>
-                            <label className="block text-xs font-bold text-green-800 uppercase tracking-wider mb-2">Subject</label>
-                            <select
-                                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:outline-none focus:border-yellow-400 focus:bg-white transition-all"
-                                value={formData.subject}
-                                onChange={e => setFormData({ ...formData, subject: e.target.value })}
-                            >
-                                <option>Getting Involved</option>
-                                <option>Business Roundtable</option>
-                                <option>Kids Depo Programs</option>
-                                <option>Donation Inquiry</option>
-                                <option>Other</option>
-                            </select>
+                            <Label htmlFor={`${id}-subject`}>Subject</Label>
+                            <Select id={`${id}-subject`} value={formData.subject} onChange={set('subject')}>
+                                {SUBJECTS.map((s) => (
+                                    <option key={s}>{s}</option>
+                                ))}
+                            </Select>
                         </div>
+
                         <div>
-                            <label className="block text-xs font-bold text-green-800 uppercase tracking-wider mb-2">Message</label>
-                            <textarea
+                            <Label htmlFor={`${id}-message`}>Message</Label>
+                            <Textarea
+                                id={`${id}-message`}
                                 required
                                 rows={4}
-                                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:outline-none focus:border-yellow-400 focus:bg-white transition-all resize-none"
                                 value={formData.message}
-                                onChange={e => setFormData({ ...formData, message: e.target.value })}
+                                onChange={set('message')}
                             />
                         </div>
-                    </div>
 
-                    <button type="submit" className="w-full bg-green-700 text-white py-4 rounded-xl font-bold text-base hover:bg-green-800 transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1">
-                        <Send size={18} /> Send Message
-                    </button>
-                    <p className="text-center text-[10px] text-slate-400">
-                        This will open your default email client to send the message.
-                    </p>
-                </form>
-            </div>
-        </div>
+                        <Button type="submit" variant="brand" size="lg" className="w-full">
+                            <Send size={18} /> Send Message
+                        </Button>
+
+                        <p className="text-center text-[11px] text-muted-foreground">
+                            This will open your default email client to send the message.
+                        </p>
+                    </form>
+                </DialogBody>
+            </DialogContent>
+        </Dialog>
     );
 };
 

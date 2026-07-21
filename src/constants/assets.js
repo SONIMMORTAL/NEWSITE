@@ -1,20 +1,25 @@
 // --- Assets ---
+// All local and WebP. The logo and community image previously pointed at an
+// external WordPress host (devtestserver.com) that no longer resolves, so the
+// logo rendered as broken alt text in the navbar and footer on every page.
 export const ASSETS = {
-    logo: "https://devtestserver.com/publicadvocate/wp-content/uploads/2025/10/Group-24.png",
-    heroBg: "/landing.jpg",
-    youthImg: "/youthserv.jpg",
-    impactImg: "/highimpact.jpg",
-    volunteerImg: "/highimpact.jpg",
-    foodPantryImg: "/totegreen.jpg",
-    communityImg: "https://devtestserver.com/publicadvocate/wp-content/uploads/2025/10/Mozambique_community-volunteers_RS65529.jpg",
-    hoodie: "/hoodie.jpg",
-    shirt1: "/shirt1.jpg",
-    shirt2: "/shirt2.jpg",
-    shirt3: "/shirt3.jpg",
-    shirt4: "/shirt4.jpg",
-    model1: "/model1.jpg",
-    tote1: "/totebag.jpg",
-    tote2: "/totegreen.jpg",
-    socialIcon: "/social.jpg",
-    youthIcon: "/youthserv.jpg"
+    logo: "/LOGO.webp",
+    heroBg: "/landing.webp",
+    youthImg: "/youthserv.webp",
+    impactImg: "/highimpact.webp",
+    volunteerImg: "/highimpact.webp",
+    foodPantryImg: "/totegreen.webp",
+    communityImg: "/youthserv.webp",
+    hoodie: "/hoodie.webp",
+    shirt1: "/shirt1.webp",
+    shirt2: "/shirt2.webp",
+    shirt3: "/shirt3.webp",
+    shirt4: "/shirt4.webp",
+    model1: "/model1.webp",
+    tote1: "/totebag.webp",
+    tote2: "/totegreen.webp",
+    socialIcon: "/social.webp",
+    youthIcon: "/youthserv.webp",
+    cashAppQr: "/cashapp-qr.webp",
+    kidsDepoIcon: "/Kidsdepoicon.webp",
 };

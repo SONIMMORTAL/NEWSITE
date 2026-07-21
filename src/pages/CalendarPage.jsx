@@ -227,7 +227,7 @@ const CalendarPage = ({ openGetInvolved }) => {
   `;
 
     return (
-        <div className="min-h-screen w-full bg-white relative overflow-hidden">
+        <div className="min-h-screen w-full bg-card relative overflow-hidden">
             {/* Lime Center Glow */}
             <div
                 className="absolute inset-0 z-0 pointer-events-none"
@@ -329,7 +329,7 @@ const CalendarPage = ({ openGetInvolved }) => {
                                 )}
                                 <button
                                     onClick={() => openGetInvolved('host', `an event in ${monthNames[currentDate.getMonth()]}`)}
-                                    className="px-4 py-2 bg-white text-green-800 rounded-xl font-bold text-sm hover:bg-green-50 transition-all flex items-center gap-2 shadow-md hover:shadow-lg"
+                                    className="px-4 py-2 bg-card text-green-800 rounded-xl font-bold text-sm hover:bg-green-50 transition-all flex items-center gap-2 shadow-md hover:shadow-lg"
                                 >
                                     <CalendarPlus size={16} /> Host Event
                                 </button>
@@ -338,8 +338,8 @@ const CalendarPage = ({ openGetInvolved }) => {
                     </div>
 
                     {/* Description Section */}
-                    <div className="bg-white/95 p-5">
-                        <p className="text-slate-600 text-sm leading-relaxed mb-3">
+                    <div className="bg-card/95 p-5">
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-3">
                             {currentTheme?.brief || "Join us for community activities this month."}
                         </p>
 
@@ -355,7 +355,7 @@ const CalendarPage = ({ openGetInvolved }) => {
                                     </span>
                                 ))}
                                 {!showFullDescription && currentTheme.monthlyObservances.length > 4 && (
-                                    <span className="text-xs px-3 py-1.5 rounded-full font-medium bg-slate-100 text-slate-600 border border-slate-200">
+                                    <span className="text-xs px-3 py-1.5 rounded-full font-medium bg-muted text-muted-foreground border border-border">
                                         +{currentTheme.monthlyObservances.length - 4} more
                                     </span>
                                 )}
@@ -365,7 +365,7 @@ const CalendarPage = ({ openGetInvolved }) => {
                         {/* Read More Button */}
                         <button
                             onClick={() => setShowFullDescription(!showFullDescription)}
-                            className="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-700 transition-colors"
+                            className="flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
                         >
                             <Info size={14} />
                             {showFullDescription ? 'Show Less' : 'Read More About This Month'}
@@ -387,8 +387,8 @@ const CalendarPage = ({ openGetInvolved }) => {
                                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                                     className="overflow-hidden"
                                 >
-                                    <div className="pt-4 mt-4 border-t border-slate-100">
-                                        <p className="text-slate-600 text-sm leading-relaxed">
+                                    <div className="pt-4 mt-4 border-t border-border">
+                                        <p className="text-muted-foreground text-sm leading-relaxed">
                                             {currentTheme?.full || "Explore the many events and awareness campaigns happening this month."}
                                         </p>
                                     </div>
@@ -572,7 +572,7 @@ const CalendarPage = ({ openGetInvolved }) => {
                                         </>
                                     ) : (
                                         <motion.div
-                                            className="text-center text-slate-500 py-12"
+                                            className="text-center text-muted-foreground py-12"
                                             initial={{ opacity: 0, scale: 0.9 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                         >
@@ -608,7 +608,7 @@ const CalendarPage = ({ openGetInvolved }) => {
 
                             {/* Modal Card */}
                             <motion.div
-                                className="relative bg-white rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.3)] w-full max-w-md overflow-hidden"
+                                className="relative bg-card rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.3)] w-full max-w-md overflow-hidden"
                                 initial={{
                                     scale: 0.85,
                                     y: 40,
@@ -692,16 +692,16 @@ const CalendarPage = ({ openGetInvolved }) => {
                                                     {events[selectedDate].map((evt, i) => (
                                                         <motion.div
                                                             key={i}
-                                                            className="flex justify-between items-start p-4 bg-slate-50 rounded-xl border border-slate-100 group"
+                                                            className="flex justify-between items-start p-4 bg-muted rounded-xl border border-border group"
                                                             initial={{ opacity: 0, x: -10 }}
                                                             animate={{ opacity: 1, x: 0 }}
                                                             transition={{ delay: i * 0.05 }}
                                                         >
                                                             <div className="flex-1">
                                                                 <div className="font-bold text-green-900">{evt.title}</div>
-                                                                <div className="text-xs text-slate-500 flex items-center gap-2 mt-1">
+                                                                <div className="text-xs text-muted-foreground flex items-center gap-2 mt-1">
                                                                     <Clock size={10} /> {evt.time}
-                                                                    <span className="capitalize px-2 py-0.5 bg-slate-200 rounded text-slate-600">
+                                                                    <span className="capitalize px-2 py-0.5 bg-slate-200 rounded text-muted-foreground">
                                                                         {evt.type}
                                                                     </span>
                                                                 </div>
@@ -723,7 +723,7 @@ const CalendarPage = ({ openGetInvolved }) => {
                                             ) : (
                                                 <div className="text-center py-8 mb-6">
                                                     <Smile size={48} className="mx-auto mb-3 text-slate-300" />
-                                                    <p className="text-slate-500 font-medium">No events yet</p>
+                                                    <p className="text-muted-foreground font-medium">No events yet</p>
                                                     <p className="text-slate-400 text-sm mt-1">Be the first to add one!</p>
                                                 </div>
                                             )}
@@ -742,14 +742,14 @@ const CalendarPage = ({ openGetInvolved }) => {
                                             <div className="mb-4">
                                                 <button
                                                     onClick={() => setShowAddForm(false)}
-                                                    className="text-sm text-slate-500 hover:text-slate-700 flex items-center gap-1"
+                                                    className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1"
                                                 >
                                                     ← Back to events
                                                 </button>
                                             </div>
 
                                             <h4 className="text-lg font-bold text-green-900 mb-4">Request Event Space</h4>
-                                            <p className="text-sm text-slate-500 mb-4">
+                                            <p className="text-sm text-muted-foreground mb-4">
                                                 Fill out the form below to request this date for your event. Our team will review and approve.
                                             </p>
 
@@ -759,7 +759,7 @@ const CalendarPage = ({ openGetInvolved }) => {
                                                     <input
                                                         type="text"
                                                         placeholder="Enter your event name"
-                                                        className="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-100"
+                                                        className="w-full p-3 rounded-xl border border-border text-sm focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-100"
                                                         value={newEventTitle}
                                                         onChange={e => setNewEventTitle(e.target.value)}
                                                     />
@@ -770,7 +770,7 @@ const CalendarPage = ({ openGetInvolved }) => {
                                                         <label className="text-xs font-bold uppercase text-slate-400 mb-1 block">Time</label>
                                                         <input
                                                             type="time"
-                                                            className="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-green-400"
+                                                            className="w-full p-3 rounded-xl border border-border text-sm focus:outline-none focus:border-green-400"
                                                             value={newEventTime}
                                                             onChange={e => setNewEventTime(e.target.value)}
                                                         />
@@ -778,7 +778,7 @@ const CalendarPage = ({ openGetInvolved }) => {
                                                     <div className="flex-1">
                                                         <label className="text-xs font-bold uppercase text-slate-400 mb-1 block">Category</label>
                                                         <select
-                                                            className="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-green-400 bg-white"
+                                                            className="w-full p-3 rounded-xl border border-border text-sm focus:outline-none focus:border-green-400 bg-card"
                                                             value={newEventType}
                                                             onChange={e => setNewEventType(e.target.value)}
                                                         >

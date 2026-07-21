@@ -1,42 +1,82 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: ['class'],
     content: [
         "./index.html",
         "./src/**/*.{js,ts,jsx,tsx}",
     ],
     theme: {
+        container: {
+            center: true,
+            padding: '1.5rem',
+            screens: {
+                '2xl': '1200px',
+            },
+        },
         extend: {
             fontFamily: {
                 sans: ['Inter', 'system-ui', 'sans-serif'],
                 display: ['Outfit', 'Inter', 'sans-serif'],
             },
             colors: {
-                // Premium color palette
-                brand: {
-                    50: '#f0fdf4',
-                    100: '#dcfce7',
-                    200: '#bbf7d0',
-                    300: '#86efac',
-                    400: '#4ade80',
-                    500: '#22c55e',
-                    600: '#16a34a',
-                    700: '#15803d',
-                    800: '#166534',
-                    900: '#14532d',
-                    950: '#052e16',
+                // Semantic design tokens — single source of truth, driven by
+                // CSS variables in index.css. Supports opacity modifiers via
+                // the `<alpha-value>` placeholder and switches with `.dark`.
+                border: 'hsl(var(--border) / <alpha-value>)',
+                input: 'hsl(var(--input) / <alpha-value>)',
+                ring: 'hsl(var(--ring) / <alpha-value>)',
+                background: 'hsl(var(--background) / <alpha-value>)',
+                foreground: 'hsl(var(--foreground) / <alpha-value>)',
+                primary: {
+                    DEFAULT: 'hsl(var(--primary) / <alpha-value>)',
+                    foreground: 'hsl(var(--primary-foreground) / <alpha-value>)',
+                },
+                secondary: {
+                    DEFAULT: 'hsl(var(--secondary) / <alpha-value>)',
+                    foreground: 'hsl(var(--secondary-foreground) / <alpha-value>)',
+                },
+                muted: {
+                    DEFAULT: 'hsl(var(--muted) / <alpha-value>)',
+                    foreground: 'hsl(var(--muted-foreground) / <alpha-value>)',
                 },
                 accent: {
-                    50: '#fefce8',
-                    100: '#fef9c3',
-                    200: '#fef08a',
-                    300: '#fde047',
-                    400: '#facc15',
-                    500: '#eab308',
-                    600: '#ca8a04',
-                    700: '#a16207',
-                    800: '#854d0e',
-                    900: '#713f12',
+                    DEFAULT: 'hsl(var(--accent) / <alpha-value>)',
+                    foreground: 'hsl(var(--accent-foreground) / <alpha-value>)',
                 },
+                destructive: {
+                    DEFAULT: 'hsl(var(--destructive) / <alpha-value>)',
+                    foreground: 'hsl(var(--destructive-foreground) / <alpha-value>)',
+                },
+                card: {
+                    DEFAULT: 'hsl(var(--card) / <alpha-value>)',
+                    foreground: 'hsl(var(--card-foreground) / <alpha-value>)',
+                },
+                popover: {
+                    DEFAULT: 'hsl(var(--popover) / <alpha-value>)',
+                    foreground: 'hsl(var(--popover-foreground) / <alpha-value>)',
+                },
+                // Brand tokens — deep forest surfaces + gold accent, the
+                // Public Advocate identity expressed as first-class tokens.
+                brand: {
+                    DEFAULT: 'hsl(var(--brand) / <alpha-value>)',
+                    foreground: 'hsl(var(--brand-foreground) / <alpha-value>)',
+                },
+                gold: {
+                    DEFAULT: 'hsl(var(--gold) / <alpha-value>)',
+                    foreground: 'hsl(var(--gold-foreground) / <alpha-value>)',
+                },
+            },
+            borderRadius: {
+                lg: 'var(--radius)',
+                md: 'calc(var(--radius) - 2px)',
+                sm: 'calc(var(--radius) - 4px)',
+            },
+            fontSize: {
+                // Fluid display scale — clamps between mobile and desktop so
+                // headings scale with the viewport instead of ad-hoc breakpoints.
+                'display-sm': ['clamp(1.75rem, 1.3rem + 2.2vw, 2.5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+                'display-md': ['clamp(2.25rem, 1.6rem + 3.2vw, 3.5rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+                'display-lg': ['clamp(2.75rem, 1.8rem + 4.75vw, 4.5rem)', { lineHeight: '1.02', letterSpacing: '-0.025em' }],
             },
             animation: {
                 'shimmer': 'shimmer 2s linear infinite',

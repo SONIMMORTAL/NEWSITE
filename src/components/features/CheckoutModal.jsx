@@ -1,12 +1,32 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { Lock, X, Loader2, CreditCard } from 'lucide-react';
+import { Lock, Loader2, CreditCard, AlertTriangle } from 'lucide-react';
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+    DialogBody,
+} from '../ui/dialog';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
 
-// Using a public test key for demonstration (safe to expose, cannot charge real money)
+// Stripe's shared publishable TEST key. It cannot move real money, and there
+// is no backend endpoint that confirms a PaymentIntent — see TEST_MODE below.
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
+/**
+ * No server-side charge exists yet: the form tokenizes the card and then
+ * simulates success on a timer. Until a real PaymentIntent endpoint is wired
+ * up, the UI must not claim money changed hands.
+ */
+const TEST_MODE = true;
+
 const CheckoutForm = ({ total, onClose }) => {
+    const id = useId();
     const stripe = useStripe();
     const elements = useElements();
     const [loading, setLoading] = useState(false);
@@ -23,122 +43,149 @@ const CheckoutForm = ({ total, onClose }) => {
             return;
         }
 
-        const cardElement = elements.getElement(CardElement);
-
-        // 1. Create a Payment Method (this tokenizes the card securely)
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
+        const { error: stripeError } = await stripe.createPaymentMethod({
             type: 'card',
-            card: cardElement,
+            card: elements.getElement(CardElement),
         });
 
-        if (error) {
-            setError(error.message);
+        if (stripeError) {
+            setError(stripeError.message);
             setLoading(false);
-        } else {
-            console.log('[PaymentMethod]', paymentMethod);
-            // Simulate backend processing delay
-            setTimeout(() => {
-                setSuccess(true);
-                setLoading(false);
-            }, 1500);
+            return;
         }
+
+        // TODO: POST the payment method to a server endpoint that creates and
+        // confirms a PaymentIntent, then flip TEST_MODE off.
+        setTimeout(() => {
+            setSuccess(true);
+            setLoading(false);
+        }, 1500);
     };
 
     if (success) {
         return (
-            <div className="text-center py-10">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-in zoom-in">
-                    <Lock size={40} className="text-green-600" />
+            <div className="py-8 text-center">
+                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-secondary">
+                    <AlertTriangle size={36} className="text-brand" />
                 </div>
-                <h2 className="text-2xl font-bold text-green-900 mb-2">Secure Payment Successful!</h2>
-                <p className="text-slate-600 mb-8">Thank you for your generous support.</p>
-                <button onClick={onClose} className="bg-green-700 text-white px-8 py-3 rounded-xl font-bold hover:bg-green-800 transition-colors">
+                <h2 className="mb-2 font-display text-2xl font-bold text-foreground">
+                    Card details verified
+                </h2>
+                <p className="mx-auto mb-6 max-w-sm text-sm text-muted-foreground">
+                    This checkout is running in test mode — <strong>no payment was taken</strong> and
+                    your card has not been charged. Please use the donation options on the Donate page
+                    to give for real.
+                </p>
+                <Button onClick={onClose} variant="brand" size="lg">
                     Close
-                </button>
+                </Button>
             </div>
         );
     }
 
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-start gap-3">
-                <Lock className="text-yellow-600 shrink-0 mt-0.5" size={18} />
-                <p className="text-xs text-yellow-800">
-                    Your payment information is encrypted and processed securely by Stripe. We do not store your card details.
+            {TEST_MODE && (
+                <div className="flex items-start gap-3 rounded-xl border border-destructive/30 bg-destructive/10 p-4">
+                    <AlertTriangle className="mt-0.5 shrink-0 text-destructive" size={18} />
+                    <p className="text-xs text-foreground">
+                        <strong>Test mode.</strong> This form does not process real payments and no
+                        money will be taken. Card details are tokenized by Stripe only.
+                    </p>
+                </div>
+            )}
+
+            <div className="flex items-start gap-3 rounded-xl border border-border bg-secondary/50 p-4">
+                <Lock className="mt-0.5 shrink-0 text-brand" size={18} />
+                <p className="text-xs text-muted-foreground">
+                    Card information is encrypted and handled directly by Stripe. We never see or
+                    store your card details.
                 </p>
             </div>
 
             <div className="space-y-4">
                 <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-1">Full Name</label>
-                    <input type="text" placeholder="Jane Doe" required className="w-full p-3 border border-slate-200 rounded-lg focus:outline-none focus:border-green-500" />
+                    <Label htmlFor={`${id}-name`}>Full Name</Label>
+                    <Input id={`${id}-name`} required autoComplete="name" placeholder="Jane Doe" />
                 </div>
                 <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-1">Email Address</label>
-                    <input type="email" placeholder="jane@example.com" required className="w-full p-3 border border-slate-200 rounded-lg focus:outline-none focus:border-green-500" />
+                    <Label htmlFor={`${id}-email`}>Email Address</Label>
+                    <Input
+                        id={`${id}-email`}
+                        type="email"
+                        required
+                        autoComplete="email"
+                        placeholder="jane@example.com"
+                    />
                 </div>
                 <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-1">Card Details</label>
-                    <div className="p-4 border border-slate-200 rounded-lg focus-within:border-green-500 focus-within:ring-1 focus-within:ring-green-500 bg-white">
-                        <CardElement options={{
-                            style: {
-                                base: {
-                                    fontSize: '16px',
-                                    color: '#424770',
-                                    '::placeholder': { color: '#aab7c4' },
+                    <Label htmlFor={`${id}-card`}>Card Details</Label>
+                    <div
+                        id={`${id}-card`}
+                        className="rounded-xl border border-input bg-background p-4 transition-colors focus-within:border-ring focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2"
+                    >
+                        <CardElement
+                            options={{
+                                style: {
+                                    base: {
+                                        fontSize: '16px',
+                                        color: '#0f2a1d',
+                                        '::placeholder': { color: '#8a9a91' },
+                                    },
+                                    invalid: { color: '#c81e1e' },
                                 },
-                                invalid: { color: '#9e2146' },
-                            },
-                        }} />
+                            }}
+                        />
                     </div>
                 </div>
             </div>
 
             {error && (
-                <div className="text-red-600 text-sm font-medium bg-red-50 p-3 rounded-lg border border-red-100">
+                <p
+                    role="alert"
+                    className="rounded-xl border border-destructive/30 bg-destructive/10 p-3 text-sm font-medium text-destructive"
+                >
                     {error}
-                </div>
+                </p>
             )}
 
-            <button
-                type="submit"
-                disabled={!stripe || loading}
-                className="w-full bg-green-700 text-white py-4 rounded-xl font-bold text-lg hover:bg-green-800 transition-all shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-                {loading ? <Loader2 className="animate-spin" /> : <><CreditCard size={20} /> Pay ${total}</>}
-            </button>
+            <Button type="submit" variant="brand" size="lg" className="w-full" disabled={!stripe || loading}>
+                {loading ? (
+                    <Loader2 className="animate-spin" />
+                ) : (
+                    <>
+                        <CreditCard size={20} /> {TEST_MODE ? `Verify card ($${total})` : `Pay $${total}`}
+                    </>
+                )}
+            </Button>
         </form>
     );
 };
 
-const CheckoutModal = ({ isOpen, onClose, total }) => {
-    if (!isOpen) return null;
+const CheckoutModal = ({ isOpen, onClose, total }) => (
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+        <DialogContent className="max-w-md">
+            <DialogHeader>
+                <div className="rounded-full bg-white/10 p-2 backdrop-blur-sm">
+                    <Lock size={18} className="text-primary" />
+                </div>
+                <div>
+                    <DialogTitle>Secure Checkout</DialogTitle>
+                    <DialogDescription>{TEST_MODE ? 'Test mode — no charge' : 'Powered by Stripe'}</DialogDescription>
+                </div>
+            </DialogHeader>
 
-    return (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-            <div className="absolute inset-0 bg-green-950/60 backdrop-blur-sm" onClick={onClose} />
-            <div className="relative bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200">
-                <div className="bg-green-900 p-4 flex justify-between items-center">
-                    <h3 className="text-white font-bold text-lg flex items-center gap-2">
-                        <Lock size={18} className="text-yellow-400" /> Secure Checkout
-                    </h3>
-                    <button onClick={onClose} className="text-white/80 hover:text-white transition-colors">
-                        <X size={20} />
-                    </button>
-                </div>
-                <div className="p-6">
-                    <Elements stripe={stripePromise}>
-                        <CheckoutForm total={total} onClose={onClose} />
-                    </Elements>
-                </div>
-                <div className="bg-slate-50 p-3 text-center border-t border-slate-100">
-                    <p className="text-[10px] text-slate-400 flex items-center justify-center gap-1">
-                        Powered by <span className="font-bold text-slate-500">Stripe</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    );
-};
+            <DialogBody>
+                <Elements stripe={stripePromise}>
+                    <CheckoutForm total={total} onClose={onClose} />
+                </Elements>
+
+                <p className="mt-6 border-t border-border pt-4 text-center text-[11px] text-muted-foreground">
+                    Powered by <span className="font-bold text-foreground">Stripe</span>
+                </p>
+            </DialogBody>
+        </DialogContent>
+    </Dialog>
+);
 
 export default CheckoutModal;

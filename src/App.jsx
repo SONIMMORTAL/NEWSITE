@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 
 // Components
 import IntroVideo from './IntroVideo';
@@ -8,22 +9,39 @@ import Footer from './components/layout/Footer';
 import ContactModal from './components/features/ContactModal';
 import GetInvolvedModal from './components/features/GetInvolvedModal';
 import Toast from './components/ui/Toast';
+import Seo from './components/seo/Seo';
+import NotFoundPage from './pages/NotFoundPage';
 
-// Pages
-import HomePage from './pages/HomePage';
-import OurWorkPage from './pages/OurWorkPage';
-import ProgramsPage from './pages/ProgramsPage';
-import FoodPantryPage from './pages/FoodPantryPage';
-import CalendarPage from './pages/CalendarPage';
-import ProductsPage from './pages/ProductsPage';
-import DonationsPage from './pages/DonationsPage';
-
-import { AccessibilityProvider, useAccessibility } from './components/layout/AccessibilityContext';
+import { ROUTES } from './config/routes';
+import { PAGE_PATHS, organizationJsonLd } from './config/site';
+import { cn } from './lib/utils';
+import { AccessibilityProvider } from './components/layout/AccessibilityContext';
 import AccessibilityMenu from './components/features/AccessibilityMenu';
 
+/** Restores scroll to the top on route change (browser back/forward keeps its own position). */
+const ScrollToTop = () => {
+    const { pathname } = useLocation();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+    return null;
+};
+
+/** Lightweight placeholder shown while a route chunk loads. */
+const RouteFallback = () => (
+    <div className="flex min-h-[60vh] items-center justify-center bg-background">
+        <div
+            className="h-8 w-8 animate-spin rounded-full border-2 border-muted border-t-primary"
+            role="status"
+            aria-label="Loading page"
+        />
+    </div>
+);
+
 const AppContent = () => {
-    const { theme } = useAccessibility();
-    const [activePage, setActivePage] = useState('home');
+    const location = useLocation();
+    const routerNavigate = useNavigate();
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [showContactModal, setShowContactModal] = useState(false);
@@ -37,15 +55,15 @@ const AppContent = () => {
     const [toastMessage, setToastMessage] = useState('');
     const [showToast, setShowToast] = useState(false);
 
-    const addToCart = (product) => {
-        setCartItems(prev => [...prev, product]);
+    const addToCart = useCallback((product) => {
+        setCartItems((prev) => [...prev, product]);
         setToastMessage(`Added ${product.name} to your cart.`);
         setShowToast(true);
-    };
+    }, []);
 
-    const removeFromCart = (index) => {
-        setCartItems(prev => prev.filter((_, i) => i !== index));
-    };
+    const removeFromCart = useCallback((index) => {
+        setCartItems((prev) => prev.filter((_, i) => i !== index));
+    }, []);
 
     const cartTotal = cartItems.reduce((sum, item) => sum + item.price, 0);
 
@@ -55,36 +73,55 @@ const AppContent = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const navigate = (page) => {
-        setActivePage(page);
-        setIsMenuOpen(false);
-        window.scrollTo(0, 0);
-    };
+    // Accepts legacy page keys ('our-work') as well as real paths, so existing
+    // in-page CTAs keep working while the URL becomes the source of truth.
+    const navigate = useCallback(
+        (pageOrPath) => {
+            setIsMenuOpen(false);
+            routerNavigate(PAGE_PATHS[pageOrPath] ?? pageOrPath);
+        },
+        [routerNavigate]
+    );
 
-    const openContactModal = (subject = '') => {
+    const openContactModal = useCallback((subject = '') => {
         setContactSubject(subject);
         setShowContactModal(true);
-    };
+    }, []);
 
-    const openGetInvolved = (type = 'volunteer', event = '') => {
+    const openGetInvolved = useCallback((type = 'volunteer', event = '') => {
         setInvolvedType(type);
         setInvolvedEvent(event || '');
         setShowGetInvolved(true);
-    };
+    }, []);
+
+    const ctx = useMemo(
+        () => ({
+            navigate,
+            openContact: openContactModal,
+            openGetInvolved,
+            addToCart,
+            removeFromCart,
+            cartItems,
+            cartTotal,
+        }),
+        [navigate, openContactModal, openGetInvolved, addToCart, removeFromCart, cartItems, cartTotal]
+    );
+
+    const activeRoute = ROUTES.find((r) => r.path === location.pathname);
+    const isHome = location.pathname === '/';
 
     return (
-        <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-yellow-200 selection:text-green-900">
-            {theme === 'grayscale' && (
-                <div className="fixed inset-0 pointer-events-none z-[90] backdrop-grayscale bg-white/0 transition-all duration-300" />
-            )}
+        <div className="min-h-screen bg-background font-sans text-foreground selection:bg-primary/30 selection:text-brand">
+            <Seo
+                title={activeRoute ? activeRoute.title : 'Page Not Found'}
+                description={activeRoute?.description}
+                jsonLd={organizationJsonLd(window.location.origin)}
+            />
+            <ScrollToTop />
 
             <IntroVideo />
 
-            <Toast
-                message={toastMessage}
-                isVisible={showToast}
-                onClose={() => setShowToast(false)}
-            />
+            <Toast message={toastMessage} isVisible={showToast} onClose={() => setShowToast(false)} />
 
             <AccessibilityMenu />
 
@@ -101,25 +138,27 @@ const AppContent = () => {
             />
 
             <Navbar
-                activePage={activePage}
-                navigate={navigate}
                 isMenuOpen={isMenuOpen}
                 setIsMenuOpen={setIsMenuOpen}
                 scrolled={scrolled}
                 cartCount={cartItems.length}
             />
 
-            <main className="flex-grow">
-                {activePage === 'home' && <HomePage navigate={navigate} />}
-                {activePage === 'our-work' && <OurWorkPage navigate={navigate} openGetInvolved={openGetInvolved} />}
-                {activePage === 'food-pantry' && <FoodPantryPage />}
-                {activePage === 'programs' && <ProgramsPage openContact={openContactModal} />}
-                {activePage === 'calendar' && <CalendarPage openGetInvolved={openGetInvolved} />}
-                {activePage === 'products' && <ProductsPage addToCart={addToCart} />}
-                {activePage === 'donations' && <DonationsPage cartTotal={cartTotal} cartItems={cartItems} removeFromCart={removeFromCart} />}
+            {/* The navbar is fixed and ~96px tall on mobile / ~129px on desktop.
+                Offset the content once here instead of per page; the home hero
+                is full-bleed by design and sits under the transparent bar. */}
+            <main className={cn('flex-grow', !isHome && 'pt-28 md:pt-36')}>
+                <Suspense fallback={<RouteFallback />}>
+                    <Routes>
+                        {ROUTES.map(({ path, Component, props }) => (
+                            <Route key={path} path={path} element={<Component {...props(ctx)} />} />
+                        ))}
+                        <Route path="*" element={<NotFoundPage />} />
+                    </Routes>
+                </Suspense>
             </main>
 
-            <Footer navigate={navigate} />
+            <Footer />
             <AiAssistant />
         </div>
     );

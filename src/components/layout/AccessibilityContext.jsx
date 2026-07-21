@@ -1,72 +1,91 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 const AccessibilityContext = createContext();
 
+/**
+ * Three real modes, replacing the six decorative colour themes that used to be
+ * implemented as ~180 lines of `!important` overrides. Because every component
+ * now reads semantic tokens, a mode is just a class on <html>:
+ *   light → (no class)   dark → .dark   high-contrast → .hc
+ */
+export const THEMES = ['light', 'dark', 'high-contrast'];
+
+const THEME_CLASS = { light: null, dark: 'dark', 'high-contrast': 'hc' };
+
+const STORAGE_KEY = 'pass:a11y';
+
+const readStored = () => {
+    try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    } catch {
+        return {};
+    }
+};
+
+const systemPrefersDark = () =>
+    typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+
+const systemPrefersReducedMotion = () =>
+    typeof window !== 'undefined' &&
+    window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
 export const AccessibilityProvider = ({ children }) => {
-    const [theme, setTheme] = useState('default'); // default, high-contrast, grayscale, deuteranopia
-    const [fontSize, setFontSize] = useState(1); // 1 = normal, 1.2 = large, 1.4 = extra large
-    const [reduceMotion, setReduceMotion] = useState(false);
+    const stored = typeof window !== 'undefined' ? readStored() : {};
 
-    // Apply classes to the body element for global styling
+    // Honour the OS preference on first visit; the stored choice wins after that.
+    const [theme, setTheme] = useState(
+        () => stored.theme || (systemPrefersDark() ? 'dark' : 'light')
+    );
+    const [fontSize, setFontSize] = useState(() => stored.fontSize || 1);
+    const [reduceMotion, setReduceMotion] = useState(
+        () => stored.reduceMotion ?? systemPrefersReducedMotion()
+    );
+
     useEffect(() => {
-        const body = document.body;
+        const root = document.documentElement;
+        root.classList.remove('dark', 'hc');
+        const cls = THEME_CLASS[theme];
+        if (cls) root.classList.add(cls);
 
-        // Remove all old theme classes
-        body.classList.remove(
-            'a11y-high-contrast',
-            'a11y-grayscale',
-            'a11y-deuteranopia',
-            'a11y-ocean',
-            'a11y-royal',
-            'a11y-sunset'
-        );
+        document.body.classList.toggle('a11y-reduce-motion', reduceMotion);
+        root.style.setProperty('--a11y-font-scale', fontSize);
 
-        // Apply new theme class
-        if (theme !== 'default') {
-            body.classList.add(`a11y-${theme}`);
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ theme, fontSize, reduceMotion }));
+        } catch {
+            /* storage blocked — settings simply won't persist */
         }
-
-        // Reduce Motion
-        if (reduceMotion) {
-            body.classList.add('a11y-reduce-motion');
-        } else {
-            body.classList.remove('a11y-reduce-motion');
-        }
-
-        // Font Size (CSS variable or class)
-        document.documentElement.style.setProperty('--a11y-font-scale', fontSize);
-
     }, [theme, fontSize, reduceMotion]);
 
-    const increaseFont = () => setFontSize(prev => Math.min(prev + 0.2, 1.4));
-    const decreaseFont = () => setFontSize(prev => Math.max(prev - 0.2, 1));
-    const toggleMotion = () => setReduceMotion(prev => !prev);
-    const cycleTheme = () => {
-        setTheme(prev => {
-            const themes = ['default', 'high-contrast', 'grayscale', 'deuteranopia', 'ocean', 'royal', 'sunset'];
-            const nextIndex = (themes.indexOf(prev) + 1) % themes.length;
-            return themes[nextIndex];
-        });
-    };
+    const increaseFont = useCallback(() => setFontSize((p) => Math.min(+(p + 0.1).toFixed(2), 1.5)), []);
+    const decreaseFont = useCallback(() => setFontSize((p) => Math.max(+(p - 0.1).toFixed(2), 0.9)), []);
+    const toggleMotion = useCallback(() => setReduceMotion((p) => !p), []);
 
-    const resetA11y = () => {
+    const cycleTheme = useCallback(
+        () => setTheme((prev) => THEMES[(THEMES.indexOf(prev) + 1) % THEMES.length]),
+        []
+    );
+
+    const resetA11y = useCallback(() => {
         setFontSize(1);
-        setTheme('default');
-        setReduceMotion(false);
-    };
+        setTheme(systemPrefersDark() ? 'dark' : 'light');
+        setReduceMotion(systemPrefersReducedMotion());
+    }, []);
 
     return (
-        <AccessibilityContext.Provider value={{
-            theme,
-            setTheme,
-            cycleTheme,
-            fontSize,
-            reduceMotion,
-            increaseFont,
-            decreaseFont,
-            toggleMotion,
-            resetA11y
-        }}>
+        <AccessibilityContext.Provider
+            value={{
+                theme,
+                setTheme,
+                cycleTheme,
+                fontSize,
+                reduceMotion,
+                increaseFont,
+                decreaseFont,
+                toggleMotion,
+                resetA11y,
+            }}
+        >
             {children}
         </AccessibilityContext.Provider>
     );

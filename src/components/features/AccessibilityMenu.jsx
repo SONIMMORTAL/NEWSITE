@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
-import { Accessibility, Type, Zap, ZapOff, Sun, Moon, RotateCcw, X, Plus, Minus } from 'lucide-react';
+import { Accessibility, Zap, ZapOff, Sun, Moon, Contrast, RotateCcw, X, Plus, Minus } from 'lucide-react';
 import { useAccessibility } from '../layout/AccessibilityContext';
+import { cn } from '../../lib/utils';
+
+const THEME_OPTIONS = [
+    { key: 'light', label: 'Light', Icon: Sun },
+    { key: 'dark', label: 'Dark', Icon: Moon },
+    { key: 'high-contrast', label: 'Contrast', Icon: Contrast },
+];
 
 const AccessibilityMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,84 +19,125 @@ const AccessibilityMenu = () => {
         decreaseFont,
         reduceMotion,
         toggleMotion,
-        resetA11y
+        resetA11y,
     } = useAccessibility();
 
     return (
         <div className="fixed bottom-24 right-6 z-[100]">
-            {/* Toggle Button */}
             {!isOpen && (
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-110 border-2 border-white"
-                    aria-label="Open Accessibility Menu"
+                    className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-primary-foreground/20 bg-brand text-brand-foreground shadow-2xl transition-transform hover:scale-110"
+                    aria-label="Open accessibility menu"
                 >
                     <Accessibility size={24} />
                 </button>
             )}
 
-            {/* Expanded Menu */}
             {isOpen && (
-                <div className="bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden w-64 animate-in slide-in-from-right-10 fade-in duration-300">
-                    <div className="bg-blue-600 p-3 flex justify-between items-center text-white">
-                        <h3 className="font-bold flex items-center gap-2">
+                <div
+                    role="dialog"
+                    aria-label="Accessibility settings"
+                    className="w-64 overflow-hidden rounded-xl border border-border bg-card shadow-2xl animate-in fade-in slide-in-from-right-10 duration-300"
+                >
+                    <div className="flex items-center justify-between bg-brand p-3 text-brand-foreground">
+                        <h3 className="flex items-center gap-2 font-bold">
                             <Accessibility size={18} /> Accessibility
                         </h3>
-                        <button onClick={() => setIsOpen(false)} className="hover:text-blue-200">
+                        <button
+                            onClick={() => setIsOpen(false)}
+                            className="rounded p-1 transition-colors hover:bg-white/10"
+                            aria-label="Close accessibility menu"
+                        >
                             <X size={18} />
                         </button>
                     </div>
 
-                    <div className="p-4 space-y-4">
-                        {/* Font Size */}
+                    <div className="space-y-4 p-4">
+                        {/* Text size */}
                         <div>
-                            <p className="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Text Size</p>
-                            <div className="flex bg-slate-100 rounded-lg p-1">
-                                <button onClick={decreaseFont} className="flex-1 py-1 hover:bg-white rounded shadow-sm transition-colors text-sm flex justify-center"><Minus size={16} /></button>
-                                <span className="flex-1 text-center font-bold text-slate-700">{Math.round(fontSize * 100)}%</span>
-                                <button onClick={increaseFont} className="flex-1 py-1 hover:bg-white rounded shadow-sm transition-colors text-sm flex justify-center"><Plus size={16} /></button>
+                            <p className="mb-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">
+                                Text Size
+                            </p>
+                            <div className="flex items-center rounded-lg bg-muted p-1">
+                                <button
+                                    onClick={decreaseFont}
+                                    className="flex flex-1 justify-center rounded py-1 transition-colors hover:bg-card"
+                                    aria-label="Decrease text size"
+                                >
+                                    <Minus size={16} />
+                                </button>
+                                <span className="flex-1 text-center text-sm font-bold text-foreground">
+                                    {Math.round(fontSize * 100)}%
+                                </span>
+                                <button
+                                    onClick={increaseFont}
+                                    className="flex flex-1 justify-center rounded py-1 transition-colors hover:bg-card"
+                                    aria-label="Increase text size"
+                                >
+                                    <Plus size={16} />
+                                </button>
                             </div>
                         </div>
 
-                        {/* Theme Selection */}
+                        {/* Appearance */}
                         <div>
-                            <p className="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide flex items-center gap-2">
-                                <Sun size={12} /> Color Theme
+                            <p className="mb-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">
+                                Appearance
                             </p>
-                            <div className="grid grid-cols-2 gap-2">
-                                {['default', 'high-contrast', 'grayscale', 'ocean', 'royal', 'sunset'].map((t) => (
+                            <div
+                                role="radiogroup"
+                                aria-label="Appearance"
+                                className="grid grid-cols-3 gap-2"
+                            >
+                                {THEME_OPTIONS.map(({ key, label, Icon }) => (
                                     <button
-                                        key={t}
-                                        onClick={() => setTheme(t)}
-                                        className={`px-2 py-1.5 rounded-md text-xs font-bold capitalize transition-all border ${theme === t
-                                            ? 'bg-blue-600 text-white border-blue-600 shadow-md transform scale-105'
-                                            : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
-                                            }`}
+                                        key={key}
+                                        role="radio"
+                                        aria-checked={theme === key}
+                                        onClick={() => setTheme(key)}
+                                        className={cn(
+                                            'flex flex-col items-center gap-1 rounded-md border px-2 py-2 text-[11px] font-bold transition-all',
+                                            theme === key
+                                                ? 'border-primary bg-primary text-primary-foreground shadow-sm'
+                                                : 'border-border bg-muted/50 text-muted-foreground hover:bg-muted'
+                                        )}
                                     >
-                                        {t.replace('-', ' ')}
+                                        <Icon size={15} />
+                                        {label}
                                     </button>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Reduce Motion */}
-                        <div className="flex justify-between items-center">
-                            <span className="text-sm font-medium text-slate-700 flex items-center gap-2">
+                        {/* Motion */}
+                        <div className="flex items-center justify-between">
+                            <span className="flex items-center gap-2 text-sm font-medium text-foreground">
                                 {reduceMotion ? <ZapOff size={16} /> : <Zap size={16} />}
                                 Animations
                             </span>
                             <button
                                 onClick={toggleMotion}
-                                className={`w-12 h-6 rounded-full transition-colors relative ${reduceMotion ? 'bg-blue-600' : 'bg-slate-300'}`}
+                                role="switch"
+                                aria-checked={reduceMotion}
+                                aria-label="Reduce motion"
+                                className={cn(
+                                    'relative h-6 w-12 rounded-full transition-colors',
+                                    reduceMotion ? 'bg-primary' : 'bg-muted-foreground/40'
+                                )}
                             >
-                                <span className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-all ${reduceMotion ? 'left-7' : 'left-1'}`} />
+                                <span
+                                    className={cn(
+                                        'absolute top-1 h-4 w-4 rounded-full bg-card shadow transition-all',
+                                        reduceMotion ? 'left-7' : 'left-1'
+                                    )}
+                                />
                             </button>
                         </div>
 
-                        {/* Reset */}
                         <button
                             onClick={resetA11y}
-                            className="w-full mt-2 py-2 text-xs text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded flex justify-center items-center gap-1 transition-colors"
+                            className="mt-2 flex w-full items-center justify-center gap-1 rounded py-2 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                         >
                             <RotateCcw size={12} /> Reset Settings
                         </button>
