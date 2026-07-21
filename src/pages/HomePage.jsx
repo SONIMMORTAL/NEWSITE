@@ -113,7 +113,7 @@ const HomePage = ({ navigate }) => (
 
             {/* Scroll Indicator */}
             <motion.div
-                onClick={() => document.getElementById('featured-event').scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('about-section').scrollIntoView({ behavior: 'smooth' })}
                 className="absolute bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 cursor-pointer"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, y: [0, 10, 0] }}
@@ -129,105 +129,6 @@ const HomePage = ({ navigate }) => (
             </motion.div>
         </section>
 
-        {/* Featured Event Section */}
-        <section id="featured-event" className="py-16 md:py-24 px-6 bg-green-50 relative overflow-hidden">
-            <div className="absolute -top-20 -right-20 opacity-[0.03] pointer-events-none transform rotate-12">
-                <Leaf size={600} className="text-green-900" />
-            </div>
-            <div className="absolute -bottom-20 -left-20 opacity-[0.03] pointer-events-none transform -rotate-12">
-                <Leaf size={500} className="text-green-900" />
-            </div>
-            
-            <div className="max-w-[1000px] mx-auto relative z-10">
-                <FadeInSection>
-                    <div className="text-center mb-10">
-                        <span className="inline-block py-1 px-3 rounded-full bg-green-100 text-green-700 font-bold tracking-wider uppercase text-xs mb-4 border border-green-200 shadow-sm">Upcoming Event</span>
-                        <p className="text-lg md:text-xl font-bold text-green-800 tracking-widest uppercase mb-2">JOIN US FOR AN</p>
-                        <h2 className="text-5xl md:text-6xl lg:text-7xl text-green-900 font-handwriting mb-2 tracking-wide" style={{fontFamily: "'Great Vibes', 'Dancing Script', cursive"}}>
-                            Organizing
-                        </h2>
-                        <h3 className="text-2xl md:text-3xl font-black text-green-950 font-display mb-4">
-                            OF THE ORGANIZATION MEETING
-                        </h3>
-                    </div>
-
-                    <div className="bg-white rounded-3xl shadow-xl p-6 md:p-10 border-4 border-white outline outline-1 outline-green-100 relative">
-                        {/* Decorative corner leaves */}
-                        <div className="absolute -top-4 -left-4 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center opacity-50"><Leaf className="text-green-600" size={20} /></div>
-                        <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center opacity-50"><Leaf className="text-green-600" size={20} /></div>
-
-                        <div className="grid md:grid-cols-3 gap-6 md:gap-8 relative z-10">
-                            {/* Date/Time */}
-                            <div className="flex flex-col items-center text-center p-6 bg-gradient-to-b from-green-50 to-white rounded-2xl border border-green-100 shadow-sm hover:shadow-md transition-shadow">
-                                <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4 text-green-600 shadow-inner">
-                                    <Calendar size={32} />
-                                </div>
-                                <h3 className="font-bold text-2xl text-green-900 mb-1">Thursday,<br/>May 14th</h3>
-                                <div className="w-12 h-0.5 bg-green-200 my-3"></div>
-                                <p className="text-green-700 font-black text-lg tracking-widest uppercase">6:00 PM SHARP</p>
-                            </div>
-
-                            {/* Location */}
-                            <div className="flex flex-col items-center text-center p-6 bg-gradient-to-b from-green-50 to-white rounded-2xl border border-green-100 shadow-sm hover:shadow-md transition-shadow relative">
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white rounded-full flex items-center justify-center p-2 shadow-sm border border-green-50">
-                                    <div className="w-full h-full bg-green-600 rounded-full flex items-center justify-center text-white">
-                                        <MapPin size={24} />
-                                    </div>
-                                </div>
-                                <div className="mt-8 w-full">
-                                    <p className="text-green-800 font-black text-xl mb-2">
-                                        <a 
-                                            href="https://www.eventective.com/brooklyn-ny/qsc-event-space-791677.html" 
-                                            target="_blank" 
-                                            rel="noopener noreferrer"
-                                            className="text-green-900 hover:text-green-700 hover:underline transition-colors"
-                                        >
-                                            QSC EVENT SPACE
-                                        </a>
-                                    </p>
-                                    <a 
-                                        href="https://www.google.com/maps/dir/?api=1&destination=535+Utica+Ave,+Brooklyn,+NY+11203"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="font-bold text-lg text-green-900 hover:text-green-700 hover:underline transition-colors block"
-                                    >
-                                        535 Utica Ave
-                                    </a>
-                                    <p className="text-green-600 text-sm font-medium italic mb-1">Corner of Rutland and Utica</p>
-                                    <p className="text-green-600 text-sm font-medium">Brooklyn, NY 11203</p>
-                                </div>
-                            </div>
-
-                            {/* Highlights */}
-                            <div className="flex flex-col items-center text-center p-6 bg-gradient-to-b from-green-50 to-white rounded-2xl border border-green-100 shadow-sm hover:shadow-md transition-shadow">
-                                <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4 text-green-600 shadow-inner">
-                                    <Users size={32} />
-                                </div>
-                                <p className="text-green-900 font-bold text-lg leading-snug">
-                                    Building a stronger community through <span className="text-green-600">advocacy</span>, <span className="text-green-600">connection</span>, and <span className="text-green-600">collective action</span>.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4">
-                            <div className="text-center bg-gradient-to-r from-green-100 via-green-50 to-green-100 py-4 px-6 rounded-xl border border-green-200 flex flex-col sm:flex-row items-center justify-center gap-3 w-full md:w-auto">
-                                <div className="bg-white p-2 rounded-full shadow-sm">
-                                    <Coffee size={20} className="text-green-600" />
-                                </div>
-                                <p className="text-green-900 font-bold text-lg tracking-wide">Lite snacks will be available!</p>
-                            </div>
-                            
-                            <a 
-                                href="mailto:Publicadvocatessocialsociety@gmail.com?subject=RSVP%20for%20Organizing%20of%20the%20Organization%20Meeting&body=Hi%2C%0A%0AI%20would%20like%20to%20RSVP%20for%20the%20Organizing%20of%20the%20Organization%20Meeting%20on%20Thursday%2C%20May%2014th.%0A%0AName%3A%0APhone%3A%0A%0AThank%20you!"
-                                className="w-full md:w-auto bg-gradient-to-r from-green-600 to-green-800 text-white font-bold py-4 px-10 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-2 text-lg"
-                            >
-                                <Send size={20} /> RSVP Now
-                            </a>
-                        </div>
-                    </div>
-                </FadeInSection>
-            </div>
-        </section>
 
         {/* About Section - Building Bridges */}
         <section id="about-section" className="py-16 md:py-24 px-6 bg-white relative">
